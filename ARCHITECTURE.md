@@ -21,9 +21,11 @@ Scripts/sync_owner_to_knowledge.py (валидирует + синхронизи�
        ↓
 Knowledge Layer (YAML DB)
        ↓
-Scripts/check_content.py + Hermes AI
+Scripts/generate_content.py + Content Templates
        ↓
-Content Drafts (статьи, FAQ)
+Content Drafts (страницы, статьи, FAQ)
+       ↓
+Scripts/check_content.py (проверка на verified факты)
        ↓
 Owner Approval
        ↓
@@ -68,6 +70,12 @@ laser178-ai-framework/
 ├── Audit/
 ├── Changelog/
 ├── Content/
+├── Content/                  # Content Layer
+│   ├── README.md
+│   ├── Templates/            # Шаблоны страниц и статей
+│   ├── Drafts/               # Черновики, сгенерированные Hermes
+│   ├── Published/            # Утверждённые и опубликованные материалы
+│   └── Fragments/            # CTA, контакты, гарантийные вставки
 ├── Governance/           ← Governance Layer
 ├── Knowledge/              ← Knowledge Layer
 │   ├── schema.md
@@ -152,6 +160,7 @@ laser178-ai-framework/
 
 1. Наполнение Owner Portal реальными данными.
 2. Синхронизация с Knowledge.
-3. Генерация SEO-контента на основе verified Knowledge.
-4. Ручная публикация на laser178.ru после owner approval.
-5. Security Layer и тестовый стенд для WordPress Adapter.
+3. Генерация SEO-контента через `Scripts/generate_content.py`.
+4. Review и owner approval.
+5. Ручная публикация на laser178.ru или через WordPress Adapter после Security Layer.
+6. Security Layer и тестовый стенд для WordPress Adapter.
