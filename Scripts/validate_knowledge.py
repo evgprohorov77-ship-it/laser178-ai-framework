@@ -26,7 +26,7 @@ VALID_SOURCES = {
 VALID_ENTITY_TYPES = {
     "company", "service_catalog", "material_catalog", "guarantee_policy",
     "price_catalog", "faq", "car_catalog", "equipment_catalog", "contact_card",
-    "employee_directory", "partner_directory",
+    "employee_directory", "partner_directory", "legal_policy",
 }
 
 

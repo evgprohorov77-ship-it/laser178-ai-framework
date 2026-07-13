@@ -1,0 +1,71 @@
+id: legal
+version: "1.0.0"
+entity_type: legal_policy
+status: draft
+verification: pending
+
+legal:
+  responsible_entity:
+    value: "ИП Прохоров Е.А."
+    verified: true
+    source: "conversation"
+  brand_name:
+    value: "Лазер Антикор"
+    verified: true
+    source: "website"
+  registered_address:
+    value: "needs_verification"
+    verified: false
+    source: "needs_verification"
+  actual_address:
+    value: "Санкт-Петербург, ул. Грузинская, 3 корп. 1П"
+    verified: true
+    source: "conversation"
+  inn:
+    value: "REDACTED"
+    verified: true
+    source: "conversation"
+    publish: false
+  ogrnip:
+    value: "REDACTED"
+    verified: true
+    source: "conversation"
+    publish: false
+  bank_details:
+    value: "needs_verification"
+    verified: false
+    source: "needs_verification"
+    publish: false
+  contract_template:
+    value: "needs_verification"
+    verified: false
+    source: "needs_verification"
+  offer_terms:
+    value: "needs_verification"
+    verified: false
+    source: "needs_verification"
+  privacy_policy:
+    value: "needs_verification"
+    verified: false
+    source: "needs_verification"
+  cookie_policy:
+    value: "needs_verification"
+    verified: false
+    source: "needs_verification"
+  public_display:
+    value: "ИП Прохоров Е.А."
+    verified: true
+    source: "conversation"
+    note: "Текст для footer/подписи на сайте."
+
+restrictions:
+  - value: "ИНН и ОГРНИП не публикуются на сайте и в контенте."
+    verified: true
+    source: "conversation"
+  - value: "Юридический адрес и банковские реквизиты не публикуются без отдельного решения."
+    verified: false
+    source: "inferred"
+
+notes:
+  - "Требуется подтвердить/предоставить договор-оферту, политику конфиденциальности, согласие на обработку персональных данных."
+  - "Требуется определить текст подписи в footer."
