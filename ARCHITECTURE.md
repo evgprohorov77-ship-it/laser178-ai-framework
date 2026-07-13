@@ -156,11 +156,30 @@ laser178-ai-framework/
 - Dry Run и review обязательны перед любым релизом.
 - Hermes не хранит и не получает credentials, пароли, API-ключи.
 
-## Следующие шаги
+## Текущий режим
 
-1. Наполнение Owner Portal реальными данными.
-2. Синхронизация с Knowledge.
-3. Генерация SEO-контента через `Scripts/generate_content.py`.
-4. Review и owner approval.
-5. Ручная публикация на laser178.ru или через WordPress Adapter после Security Layer.
-6. Security Layer и тестовый стенд для WordPress Adapter.
+- **LAOS Foundation v1.0 завершён.**
+- **LAOS-008A — Site Launch Mode.**
+- Feature freeze ядра: не создаём новые Engine, Adapter, Layer, глобальные абстракции.
+- Разрешено: исправлять ошибки, писать контент, править SEO, заполнять Knowledge, готовить сайт к запуску.
+- Идеи, не влияющие на запуск, откладываются в `Roadmap/PostLaunch/`.
+
+## Роадмап
+
+1. **LAOS-008A — Site Launch Mode:**
+   - Запуск сайта `https://laser178.ru`.
+   - Исправление критических ошибок (см. `Launch/PreLaunch_Report.md`).
+   - Наполнение обязательных страниц.
+   - SEO + аналитика.
+2. **Post-launch:**
+   - Регулярный контент, аудит, мониторинг.
+   - WordPress Adapter и другие интеграции только после запуска (см. `Roadmap/PostLaunch/`).
+
+## Архитектурные ограничения
+
+- **Запрещено до запуска:**
+  - новые Engine;
+  - новые Adapter (WordPress, Telegram, Cloudflare, CLI);
+  - новые Layer;
+  - Memory / Cron / Cloudflare integration;
+  - любые архитектурные изменения без RFC и бизнес-обоснования.
