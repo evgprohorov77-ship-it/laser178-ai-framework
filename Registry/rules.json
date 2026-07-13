@@ -1,0 +1,81 @@
+{
+  "rules": [
+    {
+      "id": "SEO-001",
+      "title": "On-page SEO",
+      "sections": {
+        "2.1": "Title length must not exceed 60 characters",
+        "2.2": "Description length must not exceed 160 characters",
+        "4.3": "Exactly one H1 per page",
+        "5.1": "Canonical URL is required",
+        "6.1": "Open Graph tags are recommended"
+      }
+    },
+    {
+      "id": "SEO-002",
+      "title": "Title too long",
+      "references": ["SEO-001 §2.1"]
+    },
+    {
+      "id": "SEO-003",
+      "title": "Title missing",
+      "references": ["SEO-001 §2.1"]
+    },
+    {
+      "id": "SEO-004",
+      "title": "Duplicate or missing H1",
+      "references": ["SEO-001 §4.3"]
+    },
+    {
+      "id": "SEO-005",
+      "title": "Description too long",
+      "references": ["SEO-001 §2.2"]
+    },
+    {
+      "id": "SEO-006",
+      "title": "Description missing",
+      "references": ["SEO-001 §2.2"]
+    },
+    {
+      "id": "SEO-007",
+      "title": "Canonical missing",
+      "references": ["SEO-001 §5.1"]
+    },
+    {
+      "id": "STRUCT-001",
+      "title": "Broken internal links",
+      "references": ["STRUCT-001 §1.1"]
+    },
+    {
+      "id": "IMG-001",
+      "title": "Image ALT rules",
+      "sections": {
+        "1.1": "Images must have non-empty alt text",
+        "2.1": "img tag must contain src attribute"
+      }
+    },
+    {
+      "id": "OPS-001",
+      "title": "Site operations",
+      "sections": {
+        "3.1": "robots.txt must reference Sitemap",
+        "3.2": "sitemap.xml must be accessible",
+        "4.1": "wp-admin must be accessible",
+        "9.1": "Auditors must not fail with unhandled errors"
+      }
+    },
+    {
+      "id": "SEC-001",
+      "title": "Security baseline",
+      "sections": {
+        "1.2": "Do not expose WordPress generator version",
+        "2.1": "XML-RPC must be disabled or restricted"
+      }
+    },
+    {
+      "id": "WP-001",
+      "title": "WordPress availability",
+      "references": ["OPS-001 §4.1"]
+    }
+  ]
+}
