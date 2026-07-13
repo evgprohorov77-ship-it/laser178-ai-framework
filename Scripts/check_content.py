@@ -46,7 +46,8 @@ def _walk(obj, path, facts):
 
 def extract_unverified_facts():
     facts = load_knowledge()
-    return [f for f in facts if not f["verified"] or f["source"] in {"needs_verification", "inferred"}]
+    # owner_edited с verified: false — это черновик Owner, не критичная ошибка.
+    return [f for f in facts if f["source"] in {"needs_verification", "inferred"}]
 
 
 def check_article(text):

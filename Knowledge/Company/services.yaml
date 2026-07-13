@@ -1,235 +1,99 @@
+# Generated from services.yaml
 id: services
 version: 1.0.0
+owner_portal: true
+source: owner_edited
+entity_type: service_catalog
+status: active
+verification: pending
 services:
-- id:
-    value: disassembly
-    verified: true
-    source: owner_edited
-    public: true
-  name:
-    value: Арматурные работы
-    verified: true
-    source: owner_edited
-    public: true
-  short_description:
-    value: Снятие и установка бамперов, подкрылков, защит картера, топливного бака,
-      подрамника и других элементов.
-    verified: true
-    source: owner_edited
-    public: true
-  unit:
-    value: снятие+установка
-    verified: true
-    source: owner_edited
-    public: true
-  public:
-    value: true
-    verified: true
-    source: owner_edited
-    public: true
-- id:
-    value: laser_cleaning
-    verified: true
-    source: owner_edited
-    public: true
+- id: laser_cleaning
   name:
     value: Лазерная очистка
-    verified: true
     source: owner_edited
-    public: true
+    verified: true
   short_description:
-    value: Лазерная очистка удаляет коррозию, старую краску, масла и окислы без повреждения
-      металла.
-    verified: true
+    value: Удаление ржавчины, старой краски, окислов и загрязнений с металла лазерным
+      лучом без абразива. Сохраняет заводское ЛКП рядом с обрабатываемой зоной.
     source: owner_edited
-    public: true
+    verified: false
   unit:
-    value: м²
-    verified: true
+    value: 1 м²
     source: owner_edited
-    public: true
+    verified: true
   public:
     value: true
-    verified: true
     source: owner_edited
-    public: true
-- id:
-    value: surface_preparation
     verified: true
-    source: owner_edited
-    public: true
+- id: disassembly
   name:
-    value: Подготовка поверхности
-    verified: true
+    value: Арматурные работы
     source: owner_edited
-    public: true
+    verified: true
   short_description:
-    value: Подготовка поверхности перед антикором.
-    verified: true
+    value: Снятие и установка элементов (бамперы, подкрылки, защиты, накладки) для
+      доступа к скрытым зонам кузова.
     source: owner_edited
-    public: true
+    verified: false
   unit:
-    value: услуга
-    verified: true
+    value: снятие+установка
     source: owner_edited
-    public: true
+    verified: true
   public:
     value: true
-    verified: true
     source: owner_edited
-    public: true
-- id:
-    value: anticor_complex
     verified: true
-    source: owner_edited
-    public: true
+- id: anticor_complex
   name:
-    value: Антикоррозийная обработка (комплекс)
-    verified: true
+    value: Антикоррозийный комплекс
     source: owner_edited
-    public: true
+    verified: true
   short_description:
-    value: Обработка днища, арок и кузова антикоррозийными материалами.
-    verified: true
+    value: 'Комплексная обработка кузова: очистка, грунтовка, нанесение антикоррозийных
+      материалов, консервация скрытых полостей.'
     source: owner_edited
-    public: true
+    verified: false
   unit:
-    value: услуга
-    verified: true
+    value: комплекс
     source: owner_edited
-    public: true
+    verified: true
   public:
     value: true
-    verified: true
     source: owner_edited
-    public: true
-- id:
-    value: cavity_conservation
     verified: true
-    source: owner_edited
-    public: true
+- id: cavity_conservation
   name:
     value: Консервация скрытых полостей
-    verified: true
     source: owner_edited
-    public: true
+    verified: true
   short_description:
-    value: Обработка внутренних полостей кузова, дверей, стоек и лонжеронов восковыми
-      антикоррозийными составами.
-    verified: true
+    value: Обработка внутренних полостей кузова (пороги, стойки, лонжероны) восковыми
+      антикорами для защиты от внутренней коррозии.
     source: owner_edited
-    public: true
+    verified: false
   unit:
-    value: услуга
-    verified: true
+    value: комплекс
     source: owner_edited
-    public: true
+    verified: true
   public:
     value: true
-    verified: true
     source: owner_edited
-    public: true
-- id:
-    value: zinc_primer
     verified: true
-    source: owner_edited
-    public: true
+- id: paint_protection
   name:
-    value: Нанесение цинкового грунта
-    verified: true
+    value: Защита ЛКП
     source: owner_edited
-    public: true
+    verified: true
   short_description:
-    value: Защита металла после лазерной очистки.
-    verified: true
+    value: Нанесение защитных покрытий на лакокрасочное покрытие после подготовки
+      поверхности.
     source: owner_edited
-    public: true
+    verified: false
   unit:
-    value: м²
-    verified: true
+    value: комплекс
     source: owner_edited
-    public: true
+    verified: true
   public:
-    value: true
-    verified: true
+    value: false
     source: owner_edited
-    public: true
-- id:
-    value: epoxy_primer
     verified: true
-    source: owner_edited
-    public: true
-  name:
-    value: Нанесение эпоксидного грунта
-    verified: true
-    source: owner_edited
-    public: true
-  short_description:
-    value: Улучшение адгезии материалов.
-    verified: true
-    source: owner_edited
-    public: true
-  unit:
-    value: м²
-    verified: true
-    source: owner_edited
-    public: true
-  public:
-    value: true
-    verified: true
-    source: owner_edited
-    public: true
-packages:
-- id:
-    value: basic
-    verified: true
-    source: owner_edited
-    public: true
-  name:
-    value: Базовая (1 зона)
-    verified: true
-    source: owner_edited
-    public: true
-  public:
-    value: true
-    verified: true
-    source: owner_edited
-    public: true
-- id:
-    value: standard
-    verified: true
-    source: owner_edited
-    public: true
-  name:
-    value: Стандартная (2 зоны)
-    verified: true
-    source: owner_edited
-    public: true
-  public:
-    value: true
-    verified: true
-    source: owner_edited
-    public: true
-- id:
-    value: full
-    verified: true
-    source: owner_edited
-    public: true
-  name:
-    value: Полная (все зоны)
-    verified: true
-    source: owner_edited
-    public: true
-  public:
-    value: true
-    verified: true
-    source: owner_edited
-    public: true
-notes:
-- value: Цены и коэффициенты — в pricing.yaml.
-  verified: true
-  source: owner_edited
-  public: true
-entity_type: service_catalog
-status: draft
-verification: pending

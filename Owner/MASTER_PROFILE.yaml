@@ -1,0 +1,259 @@
+id: owner_master_profile
+version: "1.0.0"
+owner_portal: true
+source: owner_edited
+
+# =============================================================================
+# 1. COMPANY PROFILE
+# =============================================================================
+
+company:
+  legal_name: ИП Прохоров Е.А.
+  brand_name: Лазер Антикор
+  website: https://laser178.ru
+  # Укажи год начала работы (если знаешь)
+  established_year: null
+  # Короткая формулировка: зачем клиенту выбирать вас
+  value_proposition: >-
+    Лазерная очистка кузова без абразива, сохранение заводского ЛКП,
+    комплексная антикоррозийная защита для автомобилей в Санкт-Петербурге.
+  # Миссия (2-3 предложения)
+  mission: >-
+    Продлить жизнь кузову автомобиля в суровых климатических условиях
+    Санкт-Петербурга через точную лазерную подготовку и качественные
+    антикоррозийные материалы.
+  # География
+  city_for_seo: Санкт-Петербург
+  region: Северо-Западный федеральный округ
+  country: Россия
+
+# =============================================================================
+# 2. CONTACTS
+# =============================================================================
+
+contacts:
+  address: Санкт-Петербург, ул. Грузинская, 3 корп. 1П
+  arrival: Въезд со стороны ул. Салова
+  # Основной телефон
+  phone: +79810971505
+  # Дополнительный телефон (если есть)
+  phone_alt: null
+  email: info@laser178.ru
+  business_hours: Пн-Пт с 10:00 до 19:00, Сб с 10:00 до 15:00
+  by_appointment: true
+  # Мессенджеры
+  messengers:
+    whatsapp: +79810971505
+    telegram: +79810971505
+    viber: null
+  # Социальные сети
+  social:
+    vk: null
+    instagram: null
+    youtube: null
+  # Карта / координаты (если есть)
+  map_link: null
+  yandex_maps: null
+  google_maps: null
+
+# =============================================================================
+# 3. SERVICES
+# =============================================================================
+
+services:
+  - id: laser_cleaning
+    name: Лазерная очистка
+    short_description: >-
+      Удаление ржавчины, старой краски, окислов и загрязнений с металла
+      лазерным лучом без абразива. Сохраняет заводское ЛКП рядом
+      с обрабатываемой зоной.
+    unit: 1 м²
+    public: true
+
+  - id: disassembly
+    name: Арматурные работы
+    short_description: >-
+      Снятие и установка элементов (бамперы, подкрылки, защиты, накладки)
+      для доступа к скрытым зонам кузова.
+    unit: снятие+установка
+    public: true
+
+  - id: anticor_complex
+    name: Антикоррозийный комплекс
+    short_description: >-
+      Комплексная обработка кузова: очистка, грунтовка, нанесение
+      антикоррозийных материалов, консервация скрытых полостей.
+    unit: комплекс
+    public: true
+
+  - id: cavity_conservation
+    name: Консервация скрытых полостей
+    short_description: >-
+      Обработка внутренних полостей кузова (пороги, стойки, лонжероны)
+      восковыми антикорами для защиты от внутренней коррозии.
+    unit: комплекс
+    public: true
+
+  - id: paint_protection
+    name: Защита ЛКП
+    short_description: >-
+      Нанесение защитных покрытий на лакокрасочное покрытие после
+      подготовки поверхности.
+    unit: комплекс
+    public: false
+
+# =============================================================================
+# 4. GUARANTEES
+# =============================================================================
+
+# Важно: юридически значимые условия. verified: true только если текст согласован.
+
+guarantees:
+  - type: workmanship
+    title: Гарантия на работы
+    duration: до 5 лет
+    description: >-
+      Гарантия предоставляется на выполненные антикоррозийные работы
+      при соблюдении условий эксплуатации и своевременном прохождении
+      контрольных осмотров.
+    verified: false
+
+  - type: materials
+    title: Гарантия на материалы
+    duration: по гарантии производителя
+    description: >-
+      Гарантия на материалы предоставляется производителем
+      (Dinitrol, ONB Master, MasterWAX) и действует согласно
+      его условиям.
+    verified: false
+
+  - type: exclusions
+    title: Что не входит в гарантию
+    duration: null
+    description: >-
+      Гарантия не распространяется на повреждения, возникшие в результате
+      ДТП, механических воздействий, некорректной эксплуатации,
+      а также на узлы и агрегаты, не входившие в перечень работ.
+    verified: false
+
+# =============================================================================
+# 5. PRICING
+# =============================================================================
+
+# Правила:
+# - public: true  → цена может быть опубликована на сайте
+# - public: false → цена только для внутреннего использования
+# - markup: 5% на материалы (фиксированная наценка из памяти)
+# - округление до 50 ₽
+
+pricing_policy:
+  material_markup_percent: 5
+  rounding_step: 50
+  currency: RUB
+
+# Группы услуг. В каждой группе — позиции с ценами.
+price_groups:
+  - id: laser_cleaning
+    name: Лазерная очистка
+    items:
+      - id: rust_removal
+        name: Лазерная очистка ржавчины
+        unit: 1 м²
+        base_price: 12500
+        public: true
+      - id: paint_removal
+        name: Лазерная очистка краски
+        unit: 1 м²
+        base_price: 9375
+        public: true
+      - id: old_anticor_removal
+        name: Лазерная очистка старого антикора
+        unit: 1 м²
+        base_price: 14063
+        public: true
+
+  - id: preparation
+    name: Подготовка и грунтовка
+    items:
+      - id: surface_prep
+        name: Подготовка поверхности
+        unit: услуга
+        base_price: 4000
+        public: true
+      - id: zinc_primer
+        name: Нанесение цинкового грунта
+        unit: 1 м²
+        base_price: 1000
+        public: true
+      - id: epoxy_primer
+        name: Нанесение эпоксидного грунта
+        unit: 1 м²
+        base_price: 500
+        public: true
+
+  - id: disassembly
+    name: Арматурные работы
+    items:
+      - id: disassembly_basic
+        name: Снятие+установка бампера
+        unit: снятие+установка
+        base_price: null
+        public: false
+      - id: disassembly_fender
+        name: Снятие+установка крыла
+        unit: снятие+установка
+        base_price: null
+        public: false
+
+  - id: anticor_complex
+    name: Антикоррозийный комплекс
+    items:
+      - id: anticor_sedan
+        name: Комплекс седан
+        unit: комплекс
+        base_price: null
+        public: false
+      - id: anticor_suv
+        name: Комплекс кроссовер
+        unit: комплекс
+        base_price: null
+        public: false
+      - id: anticor_minivan
+        name: Комплекс минивэн
+        unit: комплекс
+        base_price: null
+        public: false
+
+  - id: materials
+    name: Материалы
+    items:
+      - id: dinitrol_4941
+        name: Dinitrol 4941
+        unit: 1 л
+        base_price: null
+        public: false
+      - id: onb_master
+        name: ONB Master
+        unit: 1 л
+        base_price: null
+        public: false
+      - id: masterwax
+        name: MasterWAX
+        unit: 1 л
+        base_price: null
+        public: false
+
+# Минимальные и рекомендуемые комплексы (для калькулятора)
+packages:
+  - id: package_min
+    name: Минимальный
+    description: Лазерная очистка локальных зон + точечная грунтовка
+    public: true
+  - id: package_standard
+    name: Стандартный
+    description: Комплексная обработка днища, арок, порогов
+    public: true
+  - id: package_max
+    name: Максимальный
+    description: Полный комплекс + арматурные работы + консервация полостей
+    public: true

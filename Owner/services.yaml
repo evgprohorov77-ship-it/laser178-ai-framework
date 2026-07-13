@@ -1,64 +1,99 @@
+# Auto-generated from MASTER_PROFILE.yaml — edit only MASTER_PROFILE.yaml
 id: services
-version: "1.0.0"
+version: 1.0.0
 owner_portal: true
 source: owner_edited
-
-# Редактирует только Owner. После изменения запустить синхронизацию.
-# Сейчас здесь базовые описания. Цены — в pricing.yaml.
-
+entity_type: service_catalog
+status: active
+verification: pending
 services:
-  - id: disassembly
-    name: "Арматурные работы"
-    short_description: "Снятие и установка бамперов, подкрылков, защит картера, топливного бака, подрамника и других элементов."
-    unit: "снятие+установка"
-    public: true
-
-  - id: laser_cleaning
-    name: "Лазерная очистка"
-    short_description: "Лазерная очистка удаляет коррозию, старую краску, масла и окислы без повреждения металла."
-    unit: "м²"
-    public: true
-
-  - id: surface_preparation
-    name: "Подготовка поверхности"
-    short_description: "Подготовка поверхности перед антикором."
-    unit: "услуга"
-    public: true
-
-  - id: anticor_complex
-    name: "Антикоррозийная обработка (комплекс)"
-    short_description: "Обработка днища, арок и кузова антикоррозийными материалами."
-    unit: "услуга"
-    public: true
-
-  - id: cavity_conservation
-    name: "Консервация скрытых полостей"
-    short_description: "Обработка внутренних полостей кузова, дверей, стоек и лонжеронов восковыми антикоррозийными составами."
-    unit: "услуга"
-    public: true
-
-  - id: zinc_primer
-    name: "Нанесение цинкового грунта"
-    short_description: "Защита металла после лазерной очистки."
-    unit: "м²"
-    public: true
-
-  - id: epoxy_primer
-    name: "Нанесение эпоксидного грунта"
-    short_description: "Улучшение адгезии материалов."
-    unit: "м²"
-    public: true
-
-packages:
-  - id: basic
-    name: "Базовая (1 зона)"
-    public: true
-  - id: standard
-    name: "Стандартная (2 зоны)"
-    public: true
-  - id: full
-    name: "Полная (все зоны)"
-    public: true
-
-notes:
-  - "Цены и коэффициенты — в pricing.yaml."
+- id: laser_cleaning
+  name:
+    value: Лазерная очистка
+    source: owner_edited
+    verified: true
+  short_description:
+    value: Удаление ржавчины, старой краски, окислов и загрязнений с металла лазерным
+      лучом без абразива. Сохраняет заводское ЛКП рядом с обрабатываемой зоной.
+    source: owner_edited
+    verified: false
+  unit:
+    value: 1 м²
+    source: owner_edited
+    verified: true
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: disassembly
+  name:
+    value: Арматурные работы
+    source: owner_edited
+    verified: true
+  short_description:
+    value: Снятие и установка элементов (бамперы, подкрылки, защиты, накладки) для
+      доступа к скрытым зонам кузова.
+    source: owner_edited
+    verified: false
+  unit:
+    value: снятие+установка
+    source: owner_edited
+    verified: true
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: anticor_complex
+  name:
+    value: Антикоррозийный комплекс
+    source: owner_edited
+    verified: true
+  short_description:
+    value: 'Комплексная обработка кузова: очистка, грунтовка, нанесение антикоррозийных
+      материалов, консервация скрытых полостей.'
+    source: owner_edited
+    verified: false
+  unit:
+    value: комплекс
+    source: owner_edited
+    verified: true
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: cavity_conservation
+  name:
+    value: Консервация скрытых полостей
+    source: owner_edited
+    verified: true
+  short_description:
+    value: Обработка внутренних полостей кузова (пороги, стойки, лонжероны) восковыми
+      антикорами для защиты от внутренней коррозии.
+    source: owner_edited
+    verified: false
+  unit:
+    value: комплекс
+    source: owner_edited
+    verified: true
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: paint_protection
+  name:
+    value: Защита ЛКП
+    source: owner_edited
+    verified: true
+  short_description:
+    value: Нанесение защитных покрытий на лакокрасочное покрытие после подготовки
+      поверхности.
+    source: owner_edited
+    verified: false
+  unit:
+    value: комплекс
+    source: owner_edited
+    verified: true
+  public:
+    value: false
+    source: owner_edited
+    verified: true

@@ -1,94 +1,46 @@
-id: company
+# Generated from company_profile.yaml
+id: company_profile
 version: 1.0.0
+owner_portal: true
+source: owner_edited
+entity_type: company
+status: active
+verification: pending
 company:
   legal_name:
     value: ИП Прохоров Е.А.
+    source: conversation
     verified: true
-    source: owner_edited
-    public: true
   brand_name:
     value: Лазер Антикор
+    source: conversation
     verified: true
-    source: owner_edited
-    public: true
   website:
-    value: https://laser178.ru/
+    value: https://laser178.ru
+    source: conversation
     verified: true
+  established_year:
+    source: conversation
+    verified: false
+  value_proposition:
+    value: Лазерная очистка кузова без абразива, сохранение заводского ЛКП, комплексная
+      антикоррозийная защита для автомобилей в Санкт-Петербурге.
     source: owner_edited
-    public: true
-  region:
-    value: Санкт-Петербург и Ленинградская область
-    verified: true
+    verified: false
+  mission:
+    value: Продлить жизнь кузову автомобиля в суровых климатических условиях Санкт-Петербурга
+      через точную лазерную подготовку и качественные антикоррозийные материалы.
     source: owner_edited
-    public: true
+    verified: false
   city_for_seo:
     value: Санкт-Петербург
+    source: conversation
     verified: true
-    source: owner_edited
-    public: true
-  year_established:
-    value: null
+  region:
+    value: Северо-Западный федеральный округ
+    source: conversation
     verified: true
-    source: owner_edited
-    public: false
-  territory:
-    value: null
+  country:
+    value: Россия
+    source: conversation
     verified: true
-    source: owner_edited
-    public: false
-mission:
-  value: Защита кузова и скрытых полостей автомобиля от коррозии с сохранением заводского
-    лакокрасочного покрытия.
-  verified: true
-  source: owner_edited
-  public: true
-usp:
-- value: Лазерная подготовка поверхности без абразива и повреждения металла.
-  verified: true
-  source: owner_edited
-  public: true
-- value: Сохранение заводского ЛКП.
-  verified: true
-  source: owner_edited
-  public: true
-- value: Комплексная обработка скрытых полостей.
-  verified: true
-  source: owner_edited
-  public: true
-- value: Гарантия на выполненные работы.
-  verified: true
-  source: owner_edited
-  public: true
-target_audience:
-- value: Владельцы автомобилей в Санкт-Петербурге и Ленинградской области.
-  verified: true
-  source: owner_edited
-  public: true
-- value: Автомобили, подверженные коррозии из-за климата и реагентов.
-  verified: true
-  source: owner_edited
-  public: true
-owner:
-  name:
-    value: Евгений Прохоров
-    verified: true
-    source: owner_edited
-    public: true
-  role:
-    value: ИП, владелец, стратегия, контент
-    verified: true
-    source: owner_edited
-    public: true
-  public_name:
-    value: true
-    verified: true
-    source: owner_edited
-    public: true
-notes:
-- value: Год начала работы и точная территория пока не заполнены.
-  verified: true
-  source: owner_edited
-  public: true
-entity_type: company
-status: draft
-verification: pending

@@ -78,15 +78,15 @@ def build_context():
     # Services
     for svc in services.get("services", []):
         sid = svc.get("id")
-        ctx[f"service.{sid}.name"] = svc.get("name", "")
-        ctx[f"service.{sid}.description"] = svc.get("short_description", "")
-        ctx[f"service.{sid}.unit"] = svc.get("unit", "")
+        ctx[f"service.{sid}.name"] = get_value(svc, "name")
+        ctx[f"service.{sid}.description"] = get_value(svc, "short_description")
+        ctx[f"service.{sid}.unit"] = get_value(svc, "unit")
 
     # Guarantees
     for g in guarantees.get("guarantees", []):
         gtype = g.get("type")
-        ctx[f"guarantee.{gtype}.title"] = g.get("title", "")
-        ctx[f"guarantee.{gtype}.duration"] = g.get("duration", "")
+        ctx[f"guarantee.{gtype}.title"] = get_value(g, "title")
+        ctx[f"guarantee.{gtype}.duration"] = get_value(g, "duration")
 
     return ctx
 

@@ -1,87 +1,71 @@
+# Generated from contacts.yaml
 id: contacts
 version: 1.0.0
+owner_portal: true
+source: owner_edited
+entity_type: contact_card
+status: active
+verification: pending
 contacts:
   website:
-    value: https://laser178.ru/
+    value: https://laser178.ru
+    source: conversation
     verified: true
-    source: owner_edited
-    public: true
-  email:
-    value: info@laser178.ru
-    verified: true
-    source: owner_edited
-    public: true
-  phone:
-    value: '+79810971505'
-    verified: true
-    source: owner_edited
-    public: true
-  additional_phone:
-    value: null
-    verified: true
-    source: owner_edited
-    public: false
   address:
     value: Санкт-Петербург, ул. Грузинская, 3 корп. 1П
+    source: conversation
     verified: true
-    source: owner_edited
-    public: true
   arrival:
-    value: Въезд с ул. Салова
+    value: Въезд со стороны ул. Салова
+    source: conversation
     verified: true
-    source: owner_edited
-    public: true
+  phone:
+    value: 79810971505
+    source: conversation
+    verified: true
+  phone_alt:
+    source: conversation
+    verified: false
+  email:
+    value: info@laser178.ru
+    source: conversation
+    verified: true
   business_hours:
     value: Пн-Пт с 10:00 до 19:00, Сб с 10:00 до 15:00
+    source: conversation
     verified: true
-    source: owner_edited
-    public: true
-  appointment_required:
+  by_appointment:
     value: true
+    source: conversation
     verified: true
-    source: owner_edited
-    public: true
-social:
-  telegram:
-    value: null
-    verified: true
-    source: owner_edited
-    public: false
-  vkontakte:
-    value: null
-    verified: true
-    source: owner_edited
-    public: false
-  instagram:
-    value: null
-    verified: true
-    source: owner_edited
-    public: false
-  youtube:
-    value: null
-    verified: true
-    source: owner_edited
-    public: false
-  whatsapp:
-    value: null
-    verified: true
-    source: owner_edited
-    public: false
-  viber:
-    value: null
-    verified: true
-    source: owner_edited
-    public: false
-messengers_for_management:
-- value: DM с Евгением Прохоровым
-  verified: true
-  source: owner_edited
-  public: true
-notes:
-- value: Дополнительный телефон, мессенджеры и социальные сети пока не заполнены.
-  verified: true
-  source: owner_edited
-  public: true
-entity_type: contact_card
-status: draft
-verification: partial
+  messengers:
+    whatsapp:
+      value: 79810971505
+      source: conversation
+      verified: true
+    telegram:
+      value: 79810971505
+      source: conversation
+      verified: true
+    viber:
+      source: conversation
+      verified: false
+  social:
+    vk:
+      source: conversation
+      verified: false
+    instagram:
+      source: conversation
+      verified: false
+    youtube:
+      source: conversation
+      verified: false
+  map_link:
+    source: conversation
+    verified: false
+  yandex_maps:
+    source: conversation
+    verified: false
+  google_maps:
+    source: conversation
+    verified: false

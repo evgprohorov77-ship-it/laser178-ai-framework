@@ -1,87 +1,63 @@
+# Generated from guarantees.yaml
 id: guarantees
 version: 1.0.0
-guarantees:
-- type:
-    value: workmanship
-    verified: true
-    source: owner_edited
-    public: true
-  title:
-    value: Гарантия на выполненные антикоррозийные работы
-    verified: true
-    source: owner_edited
-    public: true
-  duration:
-    value: до 5 лет
-    verified: true
-    source: owner_edited
-    public: true
-  public:
-    value: true
-    verified: true
-    source: owner_edited
-    public: true
-  conditions:
-  - value: Регулярная мойка автомобиля.
-    verified: true
-    source: owner_edited
-    public: true
-  - value: Отсутствие ДТП и механических повреждений в обработанных зонах.
-    verified: true
-    source: owner_edited
-    public: true
-  - value: Своевременный контрольный осмотр.
-    verified: true
-    source: owner_edited
-    public: true
-- type:
-    value: corrosion_free
-    verified: true
-    source: owner_edited
-    public: true
-  title:
-    value: Гарантия от сквозной коррозии на обработанных участках
-    verified: true
-    source: owner_edited
-    public: true
-  duration:
-    value: до 5 лет
-    verified: true
-    source: owner_edited
-    public: true
-  public:
-    value: true
-    verified: true
-    source: owner_edited
-    public: true
-  conditions:
-  - value: Обработка выполнена полным комплексом согласно технологии.
-    verified: true
-    source: owner_edited
-    public: true
-  - value: Автомобиль не подвергался аварийному повреждению ЛКП в обработанных зонах.
-    verified: true
-    source: owner_edited
-    public: true
-exclusions:
-- value: Поверхностная ржавчина, возникшая в результате механических повреждений или
-    нарушения условий эксплуатации.
-  verified: true
-  source: owner_edited
-  public: true
-- value: Узлы и агрегаты, не входившие в перечень работ по договору.
-  verified: true
-  source: owner_edited
-  public: true
-notes:
-- value: Точные условия гарантии требуют юридического согласования.
-  verified: true
-  source: owner_edited
-  public: true
-- value: Срок 'до 5 лет' — публичный, но требует уточнения для каждого вида работ.
-  verified: true
-  source: owner_edited
-  public: true
+owner_portal: true
+source: owner_edited
 entity_type: guarantee_policy
-status: draft
+status: active
 verification: pending
+guarantees:
+- type: workmanship
+  title:
+    value: Гарантия на работы
+    source: owner_edited
+    verified: true
+  duration:
+    value: до 5 лет
+    source: owner_edited
+    verified: false
+  description:
+    value: Гарантия предоставляется на выполненные антикоррозийные работы при соблюдении
+      условий эксплуатации и своевременном прохождении контрольных осмотров.
+    source: owner_edited
+    verified: false
+  verified:
+    value: false
+    source: owner_edited
+    verified: false
+- type: materials
+  title:
+    value: Гарантия на материалы
+    source: owner_edited
+    verified: true
+  duration:
+    value: по гарантии производителя
+    source: owner_edited
+    verified: false
+  description:
+    value: Гарантия на материалы предоставляется производителем (Dinitrol, ONB Master,
+      MasterWAX) и действует согласно его условиям.
+    source: owner_edited
+    verified: false
+  verified:
+    value: false
+    source: owner_edited
+    verified: false
+- type: exclusions
+  title:
+    value: Что не входит в гарантию
+    source: owner_edited
+    verified: true
+  duration:
+    source: owner_edited
+    verified: false
+  description:
+    value: Гарантия не распространяется на повреждения, возникшие в результате ДТП,
+      механических воздействий, некорректной эксплуатации, а также на узлы и агрегаты,
+      не входившие в перечень работ.
+    source: owner_edited
+    verified: false
+  verified:
+    value: false
+    source: owner_edited
+    verified: false

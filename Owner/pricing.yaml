@@ -1,60 +1,332 @@
-id: pricing
-version: "1.0.0"
+# Auto-generated from MASTER_PROFILE.yaml — edit only MASTER_PROFILE.yaml
+id: prices
+version: 1.0.0
 owner_portal: true
 source: owner_edited
-
-# Редактирует только Owner. После изменения запустить синхронизацию.
-# Публичные цены — только с подтверждения Owner.
-
+entity_type: price_catalog
+status: active
+verification: pending
 pricing_policy:
-  markup_percent: 5
-  rounding: 50
-  client_facing_text: "без формулировок 'от'"
-
-materials:
-  - name: "Dinitrol"
-    purchase_price_per_liter: null
-    public: false
-  - name: "ONB Master"
-    purchase_price_per_liter: null
-    public: false
-  - name: "MasterWAX"
-    purchase_price_per_liter: null
-    public: false
-
-laser_cleaning_rates:
-  - name: "Очистка ржавчины"
-    rate_per_m2: 12500
-    public: false
-  - name: "Очистка краски"
-    rate_per_m2: 9375
-    public: false
-  - name: "Очистка старого антикора"
-    rate_per_m2: 14063
-    public: false
-
-surface_preparation:
-  base_price: 4000
-  public: false
-
-anticor_labor_by_body:
-  Хэтчбек: 1500
-  Седан: 1700
-  Кроссовер: 1900
-  Внедорожник: 2200
-  public: false
-
-additional_coatings:
-  zinc_primer_per_m2: 1000
-  epoxy_primer_per_m2: 500
-  public: false
-
-package_multipliers:
-  basic: 1.0
-  standard: 1.5
-  full: 2.2
-  public: false
-
-notes:
-  - "Все цены — черновики из калькулятора. Требуют owner approval для публикации."
-  - "public: false означает, что цена не показывается клиентам напрямую."
+  material_markup_percent:
+    value: 5
+    source: owner_edited
+    verified: true
+  rounding_step:
+    value: 50
+    source: owner_edited
+    verified: true
+  currency:
+    value: RUB
+    source: owner_edited
+    verified: true
+price_groups:
+- id: laser_cleaning
+  name:
+    value: Лазерная очистка
+    source: owner_edited
+    verified: true
+- id: preparation
+  name:
+    value: Подготовка и грунтовка
+    source: owner_edited
+    verified: true
+- id: disassembly
+  name:
+    value: Арматурные работы
+    source: owner_edited
+    verified: true
+- id: anticor_complex
+  name:
+    value: Антикоррозийный комплекс
+    source: owner_edited
+    verified: true
+- id: materials
+  name:
+    value: Материалы
+    source: owner_edited
+    verified: true
+price_items:
+- id: rust_removal
+  name:
+    value: Лазерная очистка ржавчины
+    source: owner_edited
+    verified: true
+  group: laser_cleaning
+  unit:
+    value: 1 м²
+    source: owner_edited
+    verified: true
+  base_price:
+    value: 12500
+    source: owner_edited
+    verified: false
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: paint_removal
+  name:
+    value: Лазерная очистка краски
+    source: owner_edited
+    verified: true
+  group: laser_cleaning
+  unit:
+    value: 1 м²
+    source: owner_edited
+    verified: true
+  base_price:
+    value: 9375
+    source: owner_edited
+    verified: false
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: old_anticor_removal
+  name:
+    value: Лазерная очистка старого антикора
+    source: owner_edited
+    verified: true
+  group: laser_cleaning
+  unit:
+    value: 1 м²
+    source: owner_edited
+    verified: true
+  base_price:
+    value: 14063
+    source: owner_edited
+    verified: false
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: surface_prep
+  name:
+    value: Подготовка поверхности
+    source: owner_edited
+    verified: true
+  group: preparation
+  unit:
+    value: услуга
+    source: owner_edited
+    verified: true
+  base_price:
+    value: 4000
+    source: owner_edited
+    verified: false
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: zinc_primer
+  name:
+    value: Нанесение цинкового грунта
+    source: owner_edited
+    verified: true
+  group: preparation
+  unit:
+    value: 1 м²
+    source: owner_edited
+    verified: true
+  base_price:
+    value: 1000
+    source: owner_edited
+    verified: false
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: epoxy_primer
+  name:
+    value: Нанесение эпоксидного грунта
+    source: owner_edited
+    verified: true
+  group: preparation
+  unit:
+    value: 1 м²
+    source: owner_edited
+    verified: true
+  base_price:
+    value: 500
+    source: owner_edited
+    verified: false
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: disassembly_basic
+  name:
+    value: Снятие+установка бампера
+    source: owner_edited
+    verified: true
+  group: disassembly
+  unit:
+    value: снятие+установка
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: disassembly_fender
+  name:
+    value: Снятие+установка крыла
+    source: owner_edited
+    verified: true
+  group: disassembly
+  unit:
+    value: снятие+установка
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: anticor_sedan
+  name:
+    value: Комплекс седан
+    source: owner_edited
+    verified: true
+  group: anticor_complex
+  unit:
+    value: комплекс
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: anticor_suv
+  name:
+    value: Комплекс кроссовер
+    source: owner_edited
+    verified: true
+  group: anticor_complex
+  unit:
+    value: комплекс
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: anticor_minivan
+  name:
+    value: Комплекс минивэн
+    source: owner_edited
+    verified: true
+  group: anticor_complex
+  unit:
+    value: комплекс
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: dinitrol_4941
+  name:
+    value: Dinitrol 4941
+    source: owner_edited
+    verified: true
+  group: materials
+  unit:
+    value: 1 л
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: onb_master
+  name:
+    value: ONB Master
+    source: owner_edited
+    verified: true
+  group: materials
+  unit:
+    value: 1 л
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: masterwax
+  name:
+    value: MasterWAX
+    source: owner_edited
+    verified: true
+  group: materials
+  unit:
+    value: 1 л
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+packages:
+- id: package_min
+  name:
+    value: Минимальный
+    source: owner_edited
+    verified: true
+  description:
+    value: Лазерная очистка локальных зон + точечная грунтовка
+    source: owner_edited
+    verified: false
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: package_standard
+  name:
+    value: Стандартный
+    source: owner_edited
+    verified: true
+  description:
+    value: Комплексная обработка днища, арок, порогов
+    source: owner_edited
+    verified: false
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: package_max
+  name:
+    value: Максимальный
+    source: owner_edited
+    verified: true
+  description:
+    value: Полный комплекс + арматурные работы + консервация полостей
+    source: owner_edited
+    verified: false
+  public:
+    value: true
+    source: owner_edited
+    verified: true

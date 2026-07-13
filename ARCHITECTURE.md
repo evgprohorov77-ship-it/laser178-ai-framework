@@ -15,9 +15,9 @@ LAOS состоит из трёх слоёв:
 ## Схема данных
 
 ```
-Owner Portal (Owner редактирует)
+Owner Portal (Owner редактирует MASTER_PROFILE.yaml)
        ↓
-Scripts/sync_owner_to_knowledge.py (валидирует + синхронизирует)
+Scripts/sync_owner_to_knowledge.py (генерирует 5 YAML + синхронизирует + валидирует)
        ↓
 Knowledge Layer (YAML DB)
        ↓
@@ -25,7 +25,7 @@ Scripts/generate_content.py + Content Templates
        ↓
 Content Drafts (страницы, статьи, FAQ)
        ↓
-Scripts/check_content.py (проверка на verified факты)
+Scripts/check_content.py (проверка на needs_verification/inferred)
        ↓
 Owner Approval
        ↓

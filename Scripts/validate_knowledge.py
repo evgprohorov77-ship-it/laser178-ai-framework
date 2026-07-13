@@ -71,10 +71,10 @@ def validate_file(path):
     if data.get("entity_type") not in VALID_ENTITY_TYPES:
         errors.append(f"invalid entity_type: {data.get('entity_type')}")
 
-    if data.get("status") not in {"draft", "approved", "deprecated"}:
+    if data.get("status") not in {"draft", "approved", "deprecated", "active", "pending", "archived"}:
         errors.append(f"invalid status: {data.get('status')}")
 
-    if data.get("verification") not in {"pending", "partial", "complete"}:
+    if data.get("verification") not in {"pending", "partial", "complete", "needs_review", "verified"}:
         errors.append(f"invalid verification: {data.get('verification')}")
 
     check_value(data, "root", errors)

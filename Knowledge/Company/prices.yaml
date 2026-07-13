@@ -1,133 +1,332 @@
+# Generated from pricing.yaml
 id: prices
 version: 1.0.0
+owner_portal: true
+source: owner_edited
 entity_type: price_catalog
-status: draft
+status: active
 verification: pending
-pricing_model:
-  value: Класс кузова → марка → модель. Арматурные работы — единица 'снятие+установка'.
-    Материалы с наценкой 5% и округлением до 50 ₽.
-  verified: true
-  source: owner_edited
-markup_percent:
-  value: 5
-  verified: true
-  source: owner_edited
-  public: true
-rounding:
-  value: 50
-  verified: true
-  source: owner_edited
-  public: true
-client_facing_text:
-  value: без формулировок 'от'
-  verified: true
-  source: owner_edited
-  public: true
-laser_cleaning_rates:
-- name:
-    value: Очистка ржавчины
-    verified: true
+pricing_policy:
+  material_markup_percent:
+    value: 5
     source: owner_edited
-    public: true
-  rate_per_m2:
+    verified: true
+  rounding_step:
+    value: 50
+    source: owner_edited
+    verified: true
+  currency:
+    value: RUB
+    source: owner_edited
+    verified: true
+price_groups:
+- id: laser_cleaning
+  name:
+    value: Лазерная очистка
+    source: owner_edited
+    verified: true
+- id: preparation
+  name:
+    value: Подготовка и грунтовка
+    source: owner_edited
+    verified: true
+- id: disassembly
+  name:
+    value: Арматурные работы
+    source: owner_edited
+    verified: true
+- id: anticor_complex
+  name:
+    value: Антикоррозийный комплекс
+    source: owner_edited
+    verified: true
+- id: materials
+  name:
+    value: Материалы
+    source: owner_edited
+    verified: true
+price_items:
+- id: rust_removal
+  name:
+    value: Лазерная очистка ржавчины
+    source: owner_edited
+    verified: true
+  group: laser_cleaning
+  unit:
+    value: 1 м²
+    source: owner_edited
+    verified: true
+  base_price:
     value: 12500
-    verified: true
     source: owner_edited
-    public: true
-  note:
-    value: Базовая ставка без мультипликаторов.
-    verified: true
+    verified: false
+  public:
+    value: true
     source: owner_edited
-    public: true
-- name:
-    value: Очистка краски
     verified: true
+- id: paint_removal
+  name:
+    value: Лазерная очистка краски
     source: owner_edited
-    public: true
-  rate_per_m2:
+    verified: true
+  group: laser_cleaning
+  unit:
+    value: 1 м²
+    source: owner_edited
+    verified: true
+  base_price:
     value: 9375
-    verified: true
     source: owner_edited
-    public: true
-  note:
-    value: Базовая ставка без мультипликаторов.
-    verified: true
+    verified: false
+  public:
+    value: true
     source: owner_edited
-    public: true
-- name:
-    value: Очистка старого антикора
     verified: true
+- id: old_anticor_removal
+  name:
+    value: Лазерная очистка старого антикора
     source: owner_edited
-    public: true
-  rate_per_m2:
+    verified: true
+  group: laser_cleaning
+  unit:
+    value: 1 м²
+    source: owner_edited
+    verified: true
+  base_price:
     value: 14063
-    verified: true
     source: owner_edited
-    public: true
-  note:
-    value: Базовая ставка без мультипликаторов.
-    verified: true
+    verified: false
+  public:
+    value: true
     source: owner_edited
-    public: true
-surface_preparation_base:
-  value: 4000
-  verified: true
-  source: owner_edited
-  public: true
-anticor_labor_by_body:
-  Хэтчбек:
-    value: 1500
     verified: true
+- id: surface_prep
+  name:
+    value: Подготовка поверхности
     source: owner_edited
-    public: true
-  Седан:
-    value: 1700
     verified: true
+  group: preparation
+  unit:
+    value: услуга
     source: owner_edited
-    public: true
-  Кроссовер:
-    value: 1900
     verified: true
+  base_price:
+    value: 4000
     source: owner_edited
-    public: true
-  Внедорожник:
-    value: 2200
+    verified: false
+  public:
+    value: true
+    source: owner_edited
     verified: true
+- id: zinc_primer
+  name:
+    value: Нанесение цинкового грунта
     source: owner_edited
-    public: true
-additional_coatings:
-  zinc_primer_per_m2:
+    verified: true
+  group: preparation
+  unit:
+    value: 1 м²
+    source: owner_edited
+    verified: true
+  base_price:
     value: 1000
-    verified: true
     source: owner_edited
-    public: true
-  epoxy_primer_per_m2:
+    verified: false
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: epoxy_primer
+  name:
+    value: Нанесение эпоксидного грунта
+    source: owner_edited
+    verified: true
+  group: preparation
+  unit:
+    value: 1 м²
+    source: owner_edited
+    verified: true
+  base_price:
     value: 500
-    verified: true
     source: owner_edited
-    public: true
-package_multipliers:
-  basic:
-    value: 1.0
-    verified: true
+    verified: false
+  public:
+    value: true
     source: owner_edited
-    public: true
-  standard:
-    value: 1.5
     verified: true
+- id: disassembly_basic
+  name:
+    value: Снятие+установка бампера
     source: owner_edited
-    public: true
-  full:
-    value: 2.2
     verified: true
+  group: disassembly
+  unit:
+    value: снятие+установка
     source: owner_edited
-    public: true
-notes:
-- value: Цены и коэффициенты подтверждены владельцем через Owner Portal.
-  verified: true
-  source: owner_edited
-  public: true
-- value: 'public: false в Owner Portal означает, что цена не публикуется напрямую.'
-  verified: true
-  source: owner_edited
-  public: true
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: disassembly_fender
+  name:
+    value: Снятие+установка крыла
+    source: owner_edited
+    verified: true
+  group: disassembly
+  unit:
+    value: снятие+установка
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: anticor_sedan
+  name:
+    value: Комплекс седан
+    source: owner_edited
+    verified: true
+  group: anticor_complex
+  unit:
+    value: комплекс
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: anticor_suv
+  name:
+    value: Комплекс кроссовер
+    source: owner_edited
+    verified: true
+  group: anticor_complex
+  unit:
+    value: комплекс
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: anticor_minivan
+  name:
+    value: Комплекс минивэн
+    source: owner_edited
+    verified: true
+  group: anticor_complex
+  unit:
+    value: комплекс
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: dinitrol_4941
+  name:
+    value: Dinitrol 4941
+    source: owner_edited
+    verified: true
+  group: materials
+  unit:
+    value: 1 л
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: onb_master
+  name:
+    value: ONB Master
+    source: owner_edited
+    verified: true
+  group: materials
+  unit:
+    value: 1 л
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+- id: masterwax
+  name:
+    value: MasterWAX
+    source: owner_edited
+    verified: true
+  group: materials
+  unit:
+    value: 1 л
+    source: owner_edited
+    verified: true
+  base_price:
+    source: owner_edited
+    verified: false
+  public:
+    value: false
+    source: owner_edited
+    verified: true
+packages:
+- id: package_min
+  name:
+    value: Минимальный
+    source: owner_edited
+    verified: true
+  description:
+    value: Лазерная очистка локальных зон + точечная грунтовка
+    source: owner_edited
+    verified: false
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: package_standard
+  name:
+    value: Стандартный
+    source: owner_edited
+    verified: true
+  description:
+    value: Комплексная обработка днища, арок, порогов
+    source: owner_edited
+    verified: false
+  public:
+    value: true
+    source: owner_edited
+    verified: true
+- id: package_max
+  name:
+    value: Максимальный
+    source: owner_edited
+    verified: true
+  description:
+    value: Полный комплекс + арматурные работы + консервация полостей
+    source: owner_edited
+    verified: false
+  public:
+    value: true
+    source: owner_edited
+    verified: true

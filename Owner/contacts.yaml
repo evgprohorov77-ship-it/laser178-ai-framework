@@ -1,59 +1,71 @@
+# Auto-generated from MASTER_PROFILE.yaml — edit only MASTER_PROFILE.yaml
 id: contacts
-version: "1.0.0"
+version: 1.0.0
 owner_portal: true
 source: owner_edited
-
-# Редактирует только Owner. После изменения запустить синхронизацию.
-
+entity_type: contact_card
+status: active
+verification: pending
 contacts:
   website:
-    value: "https://laser178.ru/"
-    public: true
-  email:
-    value: "info@laser178.ru"
-    public: true
-  phone:
-    value: "+79810971505"
-    public: true
-  additional_phone:
-    value: null
-    public: false
+    value: https://laser178.ru
+    source: conversation
+    verified: true
   address:
-    value: "Санкт-Петербург, ул. Грузинская, 3 корп. 1П"
-    public: true
+    value: Санкт-Петербург, ул. Грузинская, 3 корп. 1П
+    source: conversation
+    verified: true
   arrival:
-    value: "Въезд с ул. Салова"
-    public: true
+    value: Въезд со стороны ул. Салова
+    source: conversation
+    verified: true
+  phone:
+    value: 79810971505
+    source: conversation
+    verified: true
+  phone_alt:
+    source: conversation
+    verified: false
+  email:
+    value: info@laser178.ru
+    source: conversation
+    verified: true
   business_hours:
-    value: "Пн-Пт с 10:00 до 19:00, Сб с 10:00 до 15:00"
-    public: true
-  appointment_required:
+    value: Пн-Пт с 10:00 до 19:00, Сб с 10:00 до 15:00
+    source: conversation
+    verified: true
+  by_appointment:
     value: true
-    public: true
-
-social:
-  telegram:
-    value: null
-    public: false
-  vkontakte:
-    value: null
-    public: false
-  instagram:
-    value: null
-    public: false
-  youtube:
-    value: null
-    public: false
-  whatsapp:
-    value: null
-    public: false
-  viber:
-    value: null
-    public: false
-
-messengers_for_management:
-  - platform: Telegram
-    value: "DM с Евгением Прохоровым"
-
-notes:
-  - "Дополнительный телефон, мессенджеры и социальные сети пока не заполнены."
+    source: conversation
+    verified: true
+  messengers:
+    whatsapp:
+      value: 79810971505
+      source: conversation
+      verified: true
+    telegram:
+      value: 79810971505
+      source: conversation
+      verified: true
+    viber:
+      source: conversation
+      verified: false
+  social:
+    vk:
+      source: conversation
+      verified: false
+    instagram:
+      source: conversation
+      verified: false
+    youtube:
+      source: conversation
+      verified: false
+  map_link:
+    source: conversation
+    verified: false
+  yandex_maps:
+    source: conversation
+    verified: false
+  google_maps:
+    source: conversation
+    verified: false
