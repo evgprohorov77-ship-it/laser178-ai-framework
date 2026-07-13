@@ -1,0 +1,64 @@
+id: services
+version: "1.0.0"
+owner_portal: true
+source: owner_edited
+
+# Редактирует только Owner. После изменения запустить синхронизацию.
+# Сейчас здесь базовые описания. Цены — в pricing.yaml.
+
+services:
+  - id: disassembly
+    name: "Арматурные работы"
+    short_description: "Снятие и установка бамперов, подкрылков, защит картера, топливного бака, подрамника и других элементов."
+    unit: "снятие+установка"
+    public: true
+
+  - id: laser_cleaning
+    name: "Лазерная очистка"
+    short_description: "Лазерная очистка удаляет коррозию, старую краску, масла и окислы без повреждения металла."
+    unit: "м²"
+    public: true
+
+  - id: surface_preparation
+    name: "Подготовка поверхности"
+    short_description: "Подготовка поверхности перед антикором."
+    unit: "услуга"
+    public: true
+
+  - id: anticor_complex
+    name: "Антикоррозийная обработка (комплекс)"
+    short_description: "Обработка днища, арок и кузова антикоррозийными материалами."
+    unit: "услуга"
+    public: true
+
+  - id: cavity_conservation
+    name: "Консервация скрытых полостей"
+    short_description: "Обработка внутренних полостей кузова, дверей, стоек и лонжеронов восковыми антикоррозийными составами."
+    unit: "услуга"
+    public: true
+
+  - id: zinc_primer
+    name: "Нанесение цинкового грунта"
+    short_description: "Защита металла после лазерной очистки."
+    unit: "м²"
+    public: true
+
+  - id: epoxy_primer
+    name: "Нанесение эпоксидного грунта"
+    short_description: "Улучшение адгезии материалов."
+    unit: "м²"
+    public: true
+
+packages:
+  - id: basic
+    name: "Базовая (1 зона)"
+    public: true
+  - id: standard
+    name: "Стандартная (2 зоны)"
+    public: true
+  - id: full
+    name: "Полная (все зоны)"
+    public: true
+
+notes:
+  - "Цены и коэффициенты — в pricing.yaml."

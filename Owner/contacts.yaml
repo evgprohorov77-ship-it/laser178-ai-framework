@@ -1,0 +1,59 @@
+id: contacts
+version: "1.0.0"
+owner_portal: true
+source: owner_edited
+
+# Редактирует только Owner. После изменения запустить синхронизацию.
+
+contacts:
+  website:
+    value: "https://laser178.ru/"
+    public: true
+  email:
+    value: "info@laser178.ru"
+    public: true
+  phone:
+    value: "+79810971505"
+    public: true
+  additional_phone:
+    value: null
+    public: false
+  address:
+    value: "Санкт-Петербург, ул. Грузинская, 3 корп. 1П"
+    public: true
+  arrival:
+    value: "Въезд с ул. Салова"
+    public: true
+  business_hours:
+    value: "Пн-Пт с 10:00 до 19:00, Сб с 10:00 до 15:00"
+    public: true
+  appointment_required:
+    value: true
+    public: true
+
+social:
+  telegram:
+    value: null
+    public: false
+  vkontakte:
+    value: null
+    public: false
+  instagram:
+    value: null
+    public: false
+  youtube:
+    value: null
+    public: false
+  whatsapp:
+    value: null
+    public: false
+  viber:
+    value: null
+    public: false
+
+messengers_for_management:
+  - platform: Telegram
+    value: "DM с Евгением Прохоровым"
+
+notes:
+  - "Дополнительный телефон, мессенджеры и социальные сети пока не заполнены."

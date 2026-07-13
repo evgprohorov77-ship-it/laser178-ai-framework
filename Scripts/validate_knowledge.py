@@ -21,7 +21,7 @@ KNOWLEDGE_DIR = ROOT / "Knowledge" / "Company"
 REQUIRED_ROOT = {"id", "version", "entity_type", "status", "verification"}
 VALID_SOURCES = {
     "website", "calculator_js", "direct", "conversation", "memory_user_preference",
-    "inferred", "needs_verification", "website_partial",
+    "inferred", "needs_verification", "website_partial", "owner_edited",
 }
 VALID_ENTITY_TYPES = {
     "company", "service_catalog", "material_catalog", "guarantee_policy",

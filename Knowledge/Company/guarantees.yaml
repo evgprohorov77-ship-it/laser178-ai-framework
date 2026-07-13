@@ -1,61 +1,87 @@
 id: guarantees
-version: "1.0.0"
+version: 1.0.0
+guarantees:
+- type:
+    value: workmanship
+    verified: true
+    source: owner_edited
+    public: true
+  title:
+    value: Гарантия на выполненные антикоррозийные работы
+    verified: true
+    source: owner_edited
+    public: true
+  duration:
+    value: до 5 лет
+    verified: true
+    source: owner_edited
+    public: true
+  public:
+    value: true
+    verified: true
+    source: owner_edited
+    public: true
+  conditions:
+  - value: Регулярная мойка автомобиля.
+    verified: true
+    source: owner_edited
+    public: true
+  - value: Отсутствие ДТП и механических повреждений в обработанных зонах.
+    verified: true
+    source: owner_edited
+    public: true
+  - value: Своевременный контрольный осмотр.
+    verified: true
+    source: owner_edited
+    public: true
+- type:
+    value: corrosion_free
+    verified: true
+    source: owner_edited
+    public: true
+  title:
+    value: Гарантия от сквозной коррозии на обработанных участках
+    verified: true
+    source: owner_edited
+    public: true
+  duration:
+    value: до 5 лет
+    verified: true
+    source: owner_edited
+    public: true
+  public:
+    value: true
+    verified: true
+    source: owner_edited
+    public: true
+  conditions:
+  - value: Обработка выполнена полным комплексом согласно технологии.
+    verified: true
+    source: owner_edited
+    public: true
+  - value: Автомобиль не подвергался аварийному повреждению ЛКП в обработанных зонах.
+    verified: true
+    source: owner_edited
+    public: true
+exclusions:
+- value: Поверхностная ржавчина, возникшая в результате механических повреждений или
+    нарушения условий эксплуатации.
+  verified: true
+  source: owner_edited
+  public: true
+- value: Узлы и агрегаты, не входившие в перечень работ по договору.
+  verified: true
+  source: owner_edited
+  public: true
+notes:
+- value: Точные условия гарантии требуют юридического согласования.
+  verified: true
+  source: owner_edited
+  public: true
+- value: Срок 'до 5 лет' — публичный, но требует уточнения для каждого вида работ.
+  verified: true
+  source: owner_edited
+  public: true
 entity_type: guarantee_policy
 status: draft
 verification: pending
-
-guarantees:
-  - type: workmanship
-    title: "Гарантия на выполненные антикоррозийные работы"
-    duration: "до 5 лет"
-    verified: false
-    source: "website"
-    conditions:
-      - value: "Регулярная мойка автомобиля."
-        verified: false
-        source: "inferred"
-      - value: "Отсутствие ДТП и механических повреждений в обработанных зонах."
-        verified: false
-        source: "inferred"
-      - value: "Своевременный контрольный осмотр."
-        verified: false
-        source: "inferred"
-      - value: "Соблюдение условий эксплуатации, рекомендованных производителем материалов."
-        verified: false
-        source: "inferred"
-
-  - type: material
-    title: "Гарантия от производителя материалов"
-    duration: "varies"
-    verified: false
-    source: "needs_verification"
-    conditions: []
-
-  - type: corrosion_free
-    title: "Гарантия от сквозной коррозии на обработанных участках"
-    duration: "до 5 лет"
-    verified: false
-    source: "website"
-    conditions:
-      - value: "Обработка выполнена полным комплексом согласно технологии."
-        verified: false
-        source: "inferred"
-      - value: "Автомобиль не подвергался аварийному повреждению ЛКП в обработанных зонах."
-        verified: false
-        source: "inferred"
-
-exclusions:
-  - value: "Поверхностная ржавчина, возникшая в результате механических повреждений или нарушения условий эксплуатации."
-    verified: false
-    source: "inferred"
-  - value: "Узлы и агрегаты, не входившие в перечень работ по договору."
-    verified: false
-    source: "inferred"
-  - value: "Последствия скрытых дефектов, не выявленных при осмотре."
-    verified: false
-    source: "inferred"
-
-notes:
-  - "Точные условия гарантии требуют юридического согласования."
-  - "Срок 'до 5 лет' указан на главной странице. Требуется уточнить, для каких именно работ и материалов."
-  - "Требуется подготовить типовой договор с перечнем гарантийных обязательств."

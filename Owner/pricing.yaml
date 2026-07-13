@@ -1,0 +1,60 @@
+id: pricing
+version: "1.0.0"
+owner_portal: true
+source: owner_edited
+
+# Редактирует только Owner. После изменения запустить синхронизацию.
+# Публичные цены — только с подтверждения Owner.
+
+pricing_policy:
+  markup_percent: 5
+  rounding: 50
+  client_facing_text: "без формулировок 'от'"
+
+materials:
+  - name: "Dinitrol"
+    purchase_price_per_liter: null
+    public: false
+  - name: "ONB Master"
+    purchase_price_per_liter: null
+    public: false
+  - name: "MasterWAX"
+    purchase_price_per_liter: null
+    public: false
+
+laser_cleaning_rates:
+  - name: "Очистка ржавчины"
+    rate_per_m2: 12500
+    public: false
+  - name: "Очистка краски"
+    rate_per_m2: 9375
+    public: false
+  - name: "Очистка старого антикора"
+    rate_per_m2: 14063
+    public: false
+
+surface_preparation:
+  base_price: 4000
+  public: false
+
+anticor_labor_by_body:
+  Хэтчбек: 1500
+  Седан: 1700
+  Кроссовер: 1900
+  Внедорожник: 2200
+  public: false
+
+additional_coatings:
+  zinc_primer_per_m2: 1000
+  epoxy_primer_per_m2: 500
+  public: false
+
+package_multipliers:
+  basic: 1.0
+  standard: 1.5
+  full: 2.2
+  public: false
+
+notes:
+  - "Все цены — черновики из калькулятора. Требуют owner approval для публикации."
+  - "public: false означает, что цена не показывается клиентам напрямую."

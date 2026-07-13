@@ -1,215 +1,157 @@
-# Архитектура репозитория LAOS
+# LAOS Architecture
 
 ## Версия
 
-2.0 — LAOS Kernel
+1.1.0
 
-## Принцип
+## Общее описание
 
-Репозиторий разделён на зоны по аналогии с операционной системой:
+LAOS состоит из трёх слоёв:
 
-| Зона | Роль в ОС | Папка |
-|------|-----------|-------|
-| Decision Engine | Процессор | `AI/Decision/` |
-| Policy | Оперативная память / правила | `Policies/` |
-| Knowledge | Файловая система | `Knowledge/` |
-| Authorization | Служба безопасности | `AI/Authorization/` |
-| Action Engine | Драйверы | `AI/Engines/` |
-| Adapters | Внешние устройства | `AI/Adapters/` (RFC) |
-| Auditors | Сенсоры | `Auditors/` |
-| Logs | Журнал событий | `Logs/` |
-| Environment | Конфигурация среды | `Environment/` |
-| Capabilities | Разрешения | `Capabilities/` |
-| Approval | Change Management | `AI/Approval/` |
-| RFC | Процесс изменений | `RFC/` |
+1. **Owner Portal** — интерфейс владельца для редактирования бизнес-данных.
+2. **Knowledge Layer** — проверенная база знаний, производная от Owner Portal.
+3. **Governance Layer** — процессы, роли, утверждения, релизы, аудит.
 
-## Структура
+## Схема данных
+
+```
+Owner Portal (Owner редактирует)
+       ↓
+Scripts/sync_owner_to_knowledge.py (валидирует + синхронизирует)
+       ↓
+Knowledge Layer (YAML DB)
+       ↓
+Scripts/check_content.py + Hermes AI
+       ↓
+Content Drafts (статьи, FAQ)
+       ↓
+Owner Approval
+       ↓
+Production (WordPress, FTP) — только после Security Layer + test stand
+```
+
+## Компоненты
+
+### Owner Portal
+
+- `Owner/company_profile.yaml` → `Knowledge/Company/company.yaml`
+- `Owner/contacts.yaml` → `Knowledge/Company/contacts.yaml`
+- `Owner/services.yaml` → `Knowledge/Company/services.yaml`
+- `Owner/guarantees.yaml` → `Knowledge/Company/guarantees.yaml`
+- `Owner/pricing.yaml` → `Knowledge/Company/prices.yaml` + `materials.yaml`
+
+### Knowledge Layer
+
+- Единая схема: `Knowledge/schema.md`.
+- Валидатор: `Scripts/validate_knowledge.py`.
+- Каждый YAML-файл имеет `id`, `version`, `entity_type`, `status`, `verification`.
+- Все факты имеют `value`, `verified`, `source`, `public` (для Owner-derived) или `value`, `verified`, `source` (для Knowledge).
+
+### Governance Layer
+
+См. `Governance/README.md`. Основные документы:
+- `roles.md` — роли.
+- `permissions.md` — права.
+- `approval_matrix.md` — матрица утверждений.
+- `change_management.md` — процесс изменений.
+- `release_policy.md` — релизы и версии.
+- `versioning_policy.md` — версионирование компонентов.
+- `incident_response.md` — инциденты.
+- `audit_policy.md` — аудит.
+
+## Структура репозитория
 
 ```
 laser178-ai-framework/
-├── AI/                             # Исполнительная система
-│   ├── Authorization/              # Authorization Engine
-│   │   ├── README.md
-│   │   ├── __init__.py
-│   │   └── authorization_engine.py
-│   ├── Approval/                   # Owner Approval System
-│   │   ├── README.md
-│   │   ├── __init__.py
-│   │   └── approval_manager.py
-│   ├── Backup/                     # Backup Engine
-│   │   ├── README.md
-│   │   ├── __init__.py
-│   │   └── backup_engine.py
-│   ├── Decision/                   # Decision Engine
-│   │   ├── README.md
-│   │   ├── AI_DECISION_ENGINE.md
-│   │   ├── __init__.py
-│   │   └── decision_engine.py
-│   ├── DryRun/                     # Dry Run Engine
-│   │   ├── README.md
-│   │   ├── __init__.py
-│   │   └── dry_run_engine.py
-│   ├── Engines/                    # Risk, Action, Verification, Logger
-│   │   ├── README.md
-│   │   ├── __init__.py
-│   │   ├── action_engine.py
-│   │   ├── risk_engine.py
-│   │   ├── verification_engine.py
-│   │   └── logger.py
-│   └── Models/                     # Единые модели данных
-│       ├── __init__.py
-│       ├── finding.py
-│       └── execution_context.py
-│
-├── Auditors/                       # Детекторы проблем
-│   ├── README.md
-│   ├── __init__.py
-│   ├── base_auditor.py
-│   ├── runner.py
-│   ├── seo_auditor.py
-│   ├── structure_auditor.py
-│   ├── images_auditor.py
-│   ├── performance_auditor.py
-│   ├── security_auditor.py
-│   └── wordpress_auditor.py
-│
-├── Capabilities/                   # Capability System
-│   ├── README.md
-│   ├── seo.json
-│   ├── wordpress.json
-│   ├── content.json
-│   ├── security.json
-│   └── analytics.json
-│
-├── Environment/                    # Среды выполнения
-│   ├── README.md
-│   ├── current.json
-│   ├── development.json
-│   ├── staging.json
-│   └── production.json
-│
-├── Framework/                      # Статические правила и роли
-│   ├── zones.md
-│   ├── roles.md
-│   └── quality-checklist.md
-│
-├── Knowledge/                      # База знаний
-│   ├── README.md
-│   ├── schema.md                   # Knowledge Schema
-│   ├── Company/                    # Сущности компании
-│   │   ├── template.yaml           # Единый шаблон
-│   │   ├── company.yaml
-│   │   ├── contacts.yaml
-│   │   ├── employees.yaml
-│   │   ├── services.yaml
-│   │   ├── materials.yaml
-│   │   ├── equipment.yaml
-│   │   ├── prices.yaml
-│   │   ├── faq.yaml
-│   │   ├── guarantees.yaml
-│   │   ├── partners.yaml
-│   │   └── cars.yaml
-│
-├── Policies/                       # Policy Layer
-│   ├── authorization_policy.md
-│   ├── autofix_policy.md
-│   ├── backup_policy.md
-│   ├── verification_policy.md
-│   ├── logging_policy.md
-│   ├── production_policy.md
-│   ├── dry_run_policy.md
-│   └── human_approval_policy.md
-│
-├── Registry/                       # Реестр правил
-│   └── rules.json
-│
-├── RFC/                            # Request for Comments
-│   ├── README.md
-│   ├── template.md
-│   ├── 0001-laos-kernel-policy-layer.md
-│   └── 0002-wordpress-adapter.md
-│
-├── Operations/                     # SOP и legacy скрипты
-│   ├── backup-sop.md
-│   └── audit.py                    # deprecated
-│
-├── Scripts/                        # Entrypoints
-│   ├── __init__.py
-│   └── run_laos.py
-│
-├── Tests/                          # Тесты
-│
-├── Logs/                           # Логи (в .gitignore)
-│   └── .gitkeep
-│
-├── .github/                        # Шаблоны issue
-│   └── ISSUE_TEMPLATE/
-│
-├── README.md
+├── .hermes/
+├── Archive/
+├── Audit/
+├── Changelog/
+├── Content/
+├── Governance/           ← Governance Layer
+├── Knowledge/              ← Knowledge Layer
+│   ├── schema.md
+│   └── Company/
+├── Owner/                  ← Owner Portal
+├── Research/
+│   └── Competitors/
+├── RFC/
+├── Scripts/
+│   ├── validate_knowledge.py
+│   ├── check_content.py
+│   └── sync_owner_to_knowledge.py
 ├── ARCHITECTURE.md
-├── .gitignore
-└── AI_DECISION_ENGINE.md
+├── README.md
+└── version.txt
 ```
 
-## Главный поток
+## Change Management
 
 ```
-AuditRunner
-    ↓ List[Finding]
-DecisionEngine
-    ↓ Decision
-AuthorizationEngine
-    ↓ allowed / denied
-DryRunEngine
-    ↓ dry_run report
-ApprovalManager (если нужно)
-    ↓ approved / rejected
-BackupEngine
-    ↓ backup_uuid
-ActionEngine
-    ↓ action_result
-VerificationEngine
-    ↓ success / failed
-Logger
-    ↓ logs
-Issue (только если не исправлено)
+Идея / Запрос
+      ↓
+   RFC
+      ↓
+   Review
+      ↓
+   Approval
+      ↓
+   Implementation
+      ↓
+   Verification
+      ↓
+   Release
+      ↓
+   Changelog
 ```
 
-## Преимущества разделения
+## Версионирование
 
-| Решение | Почему |
-|---------|--------|
-| `AI/Authorization/` отдельно | Безопасность — отдельная служба, не смешана с Action Engine. |
-| `AI/Backup/` отдельно | Backup — это алгоритм, а не часть Action Engine. |
-| `AI/DryRun/` отдельно | Dry Run должен быть видим и независим. |
-| `AI/Approval/` отдельно | Change Management с UUID и статусами. |
-| `Environment/` | Production Lock отдельно от кода. |
-| `Capabilities/` | Можно отключить опасные возможности, не меняя код. |
-| `Knowledge/Company/` | База знаний как файловая система, не один огромный файл. |
-| `RFC/` | Архитектурные изменения проходят review. |
+- LAOS Core: `vMAJOR.MINOR.PATCH` в `version.txt`.
+- Knowledge Schema: отдельная версия в `Knowledge/schema.md`.
+- Owner Portal: `Owner/README.md` → версия.
+- Governance: версия в каждом документе.
+- Скрипты: `__version__` в каждом.
 
-## WordPress Adapter
+## Release Policy
 
-Создаётся последним. В `RFC/0002-wordpress-adapter.md` уже зафиксировано, что он:
+- **v0.x** — эксперименты, breaking changes разрешены.
+- **v1.x** — обратная совместимость обязательна. Текущий статус.
+- **v2.x+** — только через RFC, breaking changes согласованы.
 
-- не использует WordPress REST API;
-- является одним из адаптеров в `AI/Adapters/`;
-- требует approval в production;
-- работает только через Capability `wordpress`.
+## Security Layer
+
+- **Статус:** не реализован.
+- **Зависимости:** WordPress Adapter, production access, secrets management.
+- **Условие запуска:** завершение Security Layer и успешная эксплуатация на тестовом стенде.
+
+## Запреты
+
+- Не создавать новые Engines или Adapters в Feature Freeze.
+- Не подключать Production без owner approval.
+- Не использовать WordPress REST API до Security Layer.
+- Не удалять старые `.md` из `Knowledge/Company/` без owner approval и архивации.
+- Не хранить credentials в репозитории.
+
+## Приоритеты
+
+1. Knowledge — №1.
+2. Governance — №2.
+3. Практическое применение на laser178.ru — №3.
+4. WordPress Adapter — после Security Layer + test stand.
 
 ## Безопасность
 
 - Production Lock активен по умолчанию.
 - Capability `security` отключена до завершения Security Layer.
 - Все автоматические изменения в production требуют owner approval.
-- Dry Run и Backup обязательны перед любым действием.
-- **LAOS Core заморожен.** Новые Engine создаются только через RFC.
-- **Knowledge first.** Любой контент и статьи LAOS проверяются на соответствие Knowledge DB.
+- Dry Run и review обязательны перед любым релизом.
+- Hermes не хранит и не получает credentials, пароли, API-ключи.
 
-## Расширение
+## Следующие шаги
 
-1. Добавить `AI/Adapters/WordPress/` после одобрения RFC-0002.
-2. Добавить `AI/Adapters/GitHub/`, `AI/Adapters/Cloudflare/` и т.д.
-3. Добавить `AI/Memory/` для долговременной памяти агента.
-4. Добавить `AI/Models/agent_state.py`.
-5. Расширить Knowledge DB: добавить `Company/legal.yaml`, `Company/clients.yaml`, `Company/competitors.yaml`.
+1. Наполнение Owner Portal реальными данными.
+2. Синхронизация с Knowledge.
+3. Генерация SEO-контента на основе verified Knowledge.
+4. Ручная публикация на laser178.ru после owner approval.
+5. Security Layer и тестовый стенд для WordPress Adapter.

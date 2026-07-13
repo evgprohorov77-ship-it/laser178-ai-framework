@@ -1,75 +1,87 @@
 id: contacts
-version: "1.0.0"
-entity_type: contact_card
-status: draft
-verification: partial
-
+version: 1.0.0
 contacts:
   website:
-    value: "https://laser178.ru/"
+    value: https://laser178.ru/
     verified: true
-    source: "direct"
+    source: owner_edited
+    public: true
   email:
-    value: "info@laser178.ru"
+    value: info@laser178.ru
     verified: true
-    source: "conversation"
+    source: owner_edited
+    public: true
   phone:
-    value: "+79810971505"
+    value: '+79810971505'
     verified: true
-    source: "conversation"
+    source: owner_edited
+    public: true
   additional_phone:
-    value: "needs_verification"
-    verified: false
-    source: "needs_verification"
+    value: null
+    verified: true
+    source: owner_edited
+    public: false
   address:
-    value: "Санкт-Петербург, ул. Грузинская, 3 корп. 1П"
+    value: Санкт-Петербург, ул. Грузинская, 3 корп. 1П
     verified: true
-    source: "conversation"
+    source: owner_edited
+    public: true
   arrival:
-    value: "Въезд с ул. Салова"
+    value: Въезд с ул. Салова
     verified: true
-    source: "conversation"
+    source: owner_edited
+    public: true
   business_hours:
-    value: "Пн-Пт с 10:00 до 19:00, Сб с 10:00 до 15:00"
+    value: Пн-Пт с 10:00 до 19:00, Сб с 10:00 до 15:00
     verified: true
-    source: "conversation"
+    source: owner_edited
+    public: true
   appointment_required:
     value: true
     verified: true
-    source: "conversation"
-  social:
-    telegram:
-      value: "needs_verification"
-      verified: false
-      source: "needs_verification"
-    vkontakte:
-      value: "needs_verification"
-      verified: false
-      source: "needs_verification"
-    instagram:
-      value: "needs_verification"
-      verified: false
-      source: "needs_verification"
-    youtube:
-      value: "needs_verification"
-      verified: false
-      source: "needs_verification"
-    whatsapp:
-      value: "needs_verification"
-      verified: false
-      source: "needs_verification"
-    viber:
-      value: "needs_verification"
-      verified: false
-      source: "needs_verification"
-
-messengers_for_management:
-  - platform: Telegram
-    value: "DM с Евгением Прохоровым"
+    source: owner_edited
+    public: true
+social:
+  telegram:
+    value: null
     verified: true
-    source: "conversation"
-
+    source: owner_edited
+    public: false
+  vkontakte:
+    value: null
+    verified: true
+    source: owner_edited
+    public: false
+  instagram:
+    value: null
+    verified: true
+    source: owner_edited
+    public: false
+  youtube:
+    value: null
+    verified: true
+    source: owner_edited
+    public: false
+  whatsapp:
+    value: null
+    verified: true
+    source: owner_edited
+    public: false
+  viber:
+    value: null
+    verified: true
+    source: owner_edited
+    public: false
+messengers_for_management:
+- value: DM с Евгением Прохоровым
+  verified: true
+  source: owner_edited
+  public: true
 notes:
-  - "Основной телефон, email, адрес и часы работы подтверждены владельцем."
-  - "Дополнительный телефон, мессенджеры, социальные сети — требуют уточнения."
-  - "ИНН и ОГРНИП не публикуются."
+- value: Дополнительный телефон, мессенджеры и социальные сети пока не заполнены.
+  verified: true
+  source: owner_edited
+  public: true
+entity_type: contact_card
+status: draft
+verification: partial

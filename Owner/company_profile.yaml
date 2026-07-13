@@ -1,0 +1,57 @@
+id: company_profile
+version: "1.0.0"
+owner_portal: true
+source: owner_edited
+
+# Редактирует только Owner. После изменения запустить синхронизацию.
+
+company:
+  legal_name:
+    value: "ИП Прохоров Е.А."
+    public: true
+  brand_name:
+    value: "Лазер Антикор"
+    public: true
+  website:
+    value: "https://laser178.ru/"
+    public: true
+  region:
+    value: "Санкт-Петербург и Ленинградская область"
+    public: true
+  city_for_seo:
+    value: "Санкт-Петербург"
+    public: true
+  year_established:
+    value: null
+    public: false
+  territory:
+    value: null
+    public: false
+
+mission:
+  value: "Защита кузова и скрытых полостей автомобиля от коррозии с сохранением заводского лакокрасочного покрытия."
+  public: true
+
+usp:
+  - value: "Лазерная подготовка поверхности без абразива и повреждения металла."
+    public: true
+  - value: "Сохранение заводского ЛКП."
+    public: true
+  - value: "Комплексная обработка скрытых полостей."
+    public: true
+  - value: "Гарантия на выполненные работы."
+    public: true
+
+target_audience:
+  - value: "Владельцы автомобилей в Санкт-Петербурге и Ленинградской области."
+    public: true
+  - value: "Автомобили, подверженные коррозии из-за климата и реагентов."
+    public: true
+
+owner:
+  name: "Евгений Прохоров"
+  role: "ИП, владелец, стратегия, контент"
+  public_name: true
+
+notes:
+  - "Год начала работы и точная территория пока не заполнены."

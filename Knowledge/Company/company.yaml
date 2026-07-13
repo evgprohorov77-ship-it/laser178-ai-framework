@@ -1,143 +1,94 @@
 id: company
-version: "1.0.0"
+version: 1.0.0
+company:
+  legal_name:
+    value: ИП Прохоров Е.А.
+    verified: true
+    source: owner_edited
+    public: true
+  brand_name:
+    value: Лазер Антикор
+    verified: true
+    source: owner_edited
+    public: true
+  website:
+    value: https://laser178.ru/
+    verified: true
+    source: owner_edited
+    public: true
+  region:
+    value: Санкт-Петербург и Ленинградская область
+    verified: true
+    source: owner_edited
+    public: true
+  city_for_seo:
+    value: Санкт-Петербург
+    verified: true
+    source: owner_edited
+    public: true
+  year_established:
+    value: null
+    verified: true
+    source: owner_edited
+    public: false
+  territory:
+    value: null
+    verified: true
+    source: owner_edited
+    public: false
+mission:
+  value: Защита кузова и скрытых полостей автомобиля от коррозии с сохранением заводского
+    лакокрасочного покрытия.
+  verified: true
+  source: owner_edited
+  public: true
+usp:
+- value: Лазерная подготовка поверхности без абразива и повреждения металла.
+  verified: true
+  source: owner_edited
+  public: true
+- value: Сохранение заводского ЛКП.
+  verified: true
+  source: owner_edited
+  public: true
+- value: Комплексная обработка скрытых полостей.
+  verified: true
+  source: owner_edited
+  public: true
+- value: Гарантия на выполненные работы.
+  verified: true
+  source: owner_edited
+  public: true
+target_audience:
+- value: Владельцы автомобилей в Санкт-Петербурге и Ленинградской области.
+  verified: true
+  source: owner_edited
+  public: true
+- value: Автомобили, подверженные коррозии из-за климата и реагентов.
+  verified: true
+  source: owner_edited
+  public: true
+owner:
+  name:
+    value: Евгений Прохоров
+    verified: true
+    source: owner_edited
+    public: true
+  role:
+    value: ИП, владелец, стратегия, контент
+    verified: true
+    source: owner_edited
+    public: true
+  public_name:
+    value: true
+    verified: true
+    source: owner_edited
+    public: true
+notes:
+- value: Год начала работы и точная территория пока не заполнены.
+  verified: true
+  source: owner_edited
+  public: true
 entity_type: company
 status: draft
 verification: pending
-
-company:
-  legal_name:
-    value: "ИП Прохоров Е.А."
-    verified: true
-    source: "conversation"
-  brand_name:
-    value: "Лазер Антикор"
-    verified: true
-    source: "website"
-  website:
-    value: "https://laser178.ru/"
-    verified: true
-    source: "direct"
-  region:
-    value: "Санкт-Петербург и Ленинградская область"
-    verified: false
-    source: "inferred"
-  city_for_seo:
-    value: "Санкт-Петербург"
-    verified: true
-    source: "conversation"
-  address:
-    value: "Санкт-Петербург, ул. Грузинская, 3 корп. 1П"
-    verified: true
-    source: "conversation"
-  arrival:
-    value: "Въезд с ул. Салова"
-    verified: true
-    source: "conversation"
-  phone:
-    value: "+79810971505"
-    verified: true
-    source: "conversation"
-  additional_phone:
-    value: "needs_verification"
-    verified: false
-    source: "needs_verification"
-  email:
-    value: "info@laser178.ru"
-    verified: true
-    source: "conversation"
-  business_hours:
-    value: "Пн-Пт с 10:00 до 19:00, Сб с 10:00 до 15:00"
-    verified: true
-    source: "conversation"
-  appointment_required:
-    value: true
-    verified: true
-    source: "conversation"
-  year_established:
-    value: null
-    verified: false
-    source: "needs_verification"
-  territory:
-    value: "needs_verification"
-    verified: false
-    source: "needs_verification"
-  messengers:
-    telegram:
-      value: "needs_verification"
-      verified: false
-      source: "needs_verification"
-    whatsapp:
-      value: "needs_verification"
-      verified: false
-      source: "needs_verification"
-    viber:
-      value: "needs_verification"
-      verified: false
-      source: "needs_verification"
-
-mission:
-  value: "Защита кузова и скрытых полостей автомобиля от коррозии с сохранением заводского лакокрасочного покрытия."
-  verified: false
-  source: "inferred"
-
-usp:
-  - value: "Лазерная подготовка поверхности без абразива и повреждения металла."
-    verified: true
-    source: "website"
-  - value: "Сохранение заводского ЛКП."
-    verified: true
-    source: "website"
-  - value: "Комплексная обработка скрытых полостей."
-    verified: true
-    source: "website"
-  - value: "Гарантия на выполненные работы."
-    verified: true
-    source: "website"
-
-services_summary:
-  - value: "Арматурные работы (снятие+установка)."
-    verified: true
-    source: "website"
-  - value: "Лазерная очистка."
-    verified: true
-    source: "website"
-  - value: "Антикоррозийная обработка."
-    verified: true
-    source: "website"
-  - value: "Консервация скрытых полостей."
-    verified: true
-    source: "website"
-
-target_audience:
-  - value: "Владельцы автомобилей в Санкт-Петербурге и Ленинградской области."
-    verified: true
-    source: "website"
-  - value: "Автомобили, подверженные коррозии из-за климата и реагентов."
-    verified: false
-    source: "inferred"
-
-owner:
-  name: "Евгений Прохоров"
-  role: "ИП, владелец, стратегия, контент"
-  verified: true
-  source: "conversation"
-tax_info:
-  inn:
-    value: "REDACTED"
-    verified: true
-    source: "conversation"
-    publish: false
-  ogrnip:
-    value: "REDACTED"
-    verified: true
-    source: "conversation"
-    publish: false
-privacy_note:
-  value: "ИНН и ОГРНИП не публикуются на сайте и в контенте."
-  verified: true
-  source: "conversation"
-
-notes:
-  - "ИНН и ОГРНИП не публикуются — согласно требованию владельца."
-  - "Требуется уточнить: год начала работы, территория обслуживания, дополнительный телефон, мессенджеры."
-  - "Требуется подтвердить миссию и формулировку USP."
