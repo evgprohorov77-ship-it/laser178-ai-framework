@@ -1,0 +1,9 @@
+{
+  "capability": "content",
+  "enabled": true,
+  "description": "Управление контентом: создание и редактирование страниц, постов, FAQ.",
+  "allowed_actions": ["draft_post", "update_post", "publish_post"],
+  "environments": ["development", "staging"],
+  "requires_approval_above_severity": "P1",
+  "owner_override": false
+}

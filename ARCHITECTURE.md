@@ -1,35 +1,69 @@
 # Архитектура репозитория LAOS
 
+## Версия
+
+2.0 — LAOS Kernel
+
 ## Принцип
 
-Репозиторий разделён на три зоны:
+Репозиторий разделён на зоны по аналогии с операционной системой:
 
-1. **AI/** — исполнительная система агента.
-2. **Framework/** — правила, роли, стандарты.
-3. **Auditors/** — детекторы проблем.
+| Зона | Роль в ОС | Папка |
+|------|-----------|-------|
+| Decision Engine | Процессор | `AI/Decision/` |
+| Policy | Оперативная память / правила | `Policies/` |
+| Knowledge | Файловая система | `Knowledge/` |
+| Authorization | Служба безопасности | `AI/Authorization/` |
+| Action Engine | Драйверы | `AI/Engines/` |
+| Adapters | Внешние устройства | `AI/Adapters/` (RFC) |
+| Auditors | Сенсоры | `Auditors/` |
+| Logs | Журнал событий | `Logs/` |
+| Environment | Конфигурация среды | `Environment/` |
+| Capabilities | Разрешения | `Capabilities/` |
+| Approval | Change Management | `AI/Approval/` |
+| RFC | Процесс изменений | `RFC/` |
 
-Такое разделение отражает разделение ответственности: *что делать* (Framework), *кто решает* (AI), *что проверяет* (Auditors).
-
-## Новая структура
+## Структура
 
 ```
 laser178-ai-framework/
 ├── AI/                             # Исполнительная система
+│   ├── Authorization/              # Authorization Engine
+│   │   ├── README.md
+│   │   ├── __init__.py
+│   │   └── authorization_engine.py
+│   ├── Approval/                   # Owner Approval System
+│   │   ├── README.md
+│   │   ├── __init__.py
+│   │   └── approval_manager.py
+│   ├── Backup/                     # Backup Engine
+│   │   ├── README.md
+│   │   ├── __init__.py
+│   │   └── backup_engine.py
 │   ├── Decision/                   # Decision Engine
 │   │   ├── README.md
 │   │   ├── AI_DECISION_ENGINE.md
+│   │   ├── __init__.py
 │   │   └── decision_engine.py
-│   ├── Engines/                    # Остальные движки
+│   ├── DryRun/                     # Dry Run Engine
 │   │   ├── README.md
+│   │   ├── __init__.py
+│   │   └── dry_run_engine.py
+│   ├── Engines/                    # Risk, Action, Verification, Logger
+│   │   ├── README.md
+│   │   ├── __init__.py
 │   │   ├── action_engine.py
 │   │   ├── risk_engine.py
 │   │   ├── verification_engine.py
 │   │   └── logger.py
 │   └── Models/                     # Единые модели данных
-│       └── finding.py
+│       ├── __init__.py
+│       ├── finding.py
+│       └── execution_context.py
 │
 ├── Auditors/                       # Детекторы проблем
 │   ├── README.md
+│   ├── __init__.py
 │   ├── base_auditor.py
 │   ├── runner.py
 │   ├── seo_auditor.py
@@ -39,27 +73,66 @@ laser178-ai-framework/
 │   ├── security_auditor.py
 │   └── wordpress_auditor.py
 │
-├── Framework/                      # Правила и стандарты
+├── Capabilities/                   # Capability System
+│   ├── README.md
+│   ├── seo.json
+│   ├── wordpress.json
+│   ├── content.json
+│   ├── security.json
+│   └── analytics.json
+│
+├── Environment/                    # Среды выполнения
+│   ├── README.md
+│   ├── current.json
+│   ├── development.json
+│   ├── staging.json
+│   └── production.json
+│
+├── Framework/                      # Статические правила и роли
 │   ├── zones.md
 │   ├── roles.md
 │   └── quality-checklist.md
 │
-├── Knowledge/                      # База знаний о компании
-│   └── company.md
+├── Knowledge/                      # База знаний
+│   ├── README.md
+│   └── Company/
+│       ├── company.md
+│       ├── employees.md
+│       ├── contacts.md
+│       ├── services.md
+│       ├── materials.md
+│       ├── equipment.md
+│       ├── prices.md
+│       ├── faq.md
+│       ├── guarantees.md
+│       ├── partners.md
+│       └── cars.md
 │
-├── Policies/                       # Политики
-│   ├── rollback_policy.md
-│   ├── severity_and_confidence.md
-│   └── framework_reference.md
+├── Policies/                       # Policy Layer
+│   ├── authorization_policy.md
+│   ├── autofix_policy.md
+│   ├── backup_policy.md
+│   ├── verification_policy.md
+│   ├── logging_policy.md
+│   ├── production_policy.md
+│   ├── dry_run_policy.md
+│   └── human_approval_policy.md
 │
 ├── Registry/                       # Реестр правил
 │   └── rules.json
 │
-├── Operations/                     # SOP и вспомогательные скрипты
+├── RFC/                            # Request for Comments
+│   ├── README.md
+│   ├── template.md
+│   ├── 0001-laos-kernel-policy-layer.md
+│   └── 0002-wordpress-adapter.md
+│
+├── Operations/                     # SOP и legacy скрипты
 │   ├── backup-sop.md
-│   └── audit.py                    # deprecated, оставлен для истории
+│   └── audit.py                    # deprecated
 │
 ├── Scripts/                        # Entrypoints
+│   ├── __init__.py
 │   └── run_laos.py
 │
 ├── Tests/                          # Тесты
@@ -71,40 +144,67 @@ laser178-ai-framework/
 │   └── ISSUE_TEMPLATE/
 │
 ├── README.md
+├── ARCHITECTURE.md
 ├── .gitignore
-└── AI_DECISION_ENGINE.md           # symlink / копия в корне для удобства
+└── AI_DECISION_ENGINE.md
 ```
 
-## Преимущества каждого изменения
+## Главный поток
 
-| Изменение | Почему |
-|-----------|--------|
-| `AI/Decision/` | Decision Engine — центральный компонент, достоин отдельной директории. |
-| `AI/Engines/` | Risk, Action, Verification — модули одного уровня, но не центральны. |
-| `AI/Models/` | Единая модель `Finding` исключает произвольные структуры. |
-| `Auditors/` | Каждый аудитор отвечает только за свою область. |
-| `Policies/` | Severity, rollback, framework reference — политики, а не код. |
-| `Registry/` | Реестр правил отделён от документов, позволяет валидировать `framework_reference`. |
-| `Scripts/` | Entrypoint `run_laos.py` — единый способ запуска всей системы. |
-| `Tests/` | Место для unit-тестов аудиторов и Decision Engine. |
-| `Logs/` | Логи хранятся вне кода, но в репо есть `.gitkeep`. |
+```
+AuditRunner
+    ↓ List[Finding]
+DecisionEngine
+    ↓ Decision
+AuthorizationEngine
+    ↓ allowed / denied
+DryRunEngine
+    ↓ dry_run report
+ApprovalManager (если нужно)
+    ↓ approved / rejected
+BackupEngine
+    ↓ backup_uuid
+ActionEngine
+    ↓ action_result
+VerificationEngine
+    ↓ success / failed
+Logger
+    ↓ logs
+Issue (только если не исправлено)
+```
 
-## Устаревшие файлы
+## Преимущества разделения
 
-- `Operations/audit.py` — оставлен как исторический артефакт. Новый аудит запускается через `Scripts/run_laos.py`.
+| Решение | Почему |
+|---------|--------|
+| `AI/Authorization/` отдельно | Безопасность — отдельная служба, не смешана с Action Engine. |
+| `AI/Backup/` отдельно | Backup — это алгоритм, а не часть Action Engine. |
+| `AI/DryRun/` отдельно | Dry Run должен быть видим и независим. |
+| `AI/Approval/` отдельно | Change Management с UUID и статусами. |
+| `Environment/` | Production Lock отдельно от кода. |
+| `Capabilities/` | Можно отключить опасные возможности, не меняя код. |
+| `Knowledge/Company/` | База знаний как файловая система, не один огромный файл. |
+| `RFC/` | Архитектурные изменения проходят review. |
 
-## Правила добавления нового аудитора
+## WordPress Adapter
 
-1. Создать `Auditors/{name}_auditor.py`.
-2. Наследовать `BaseAuditor`.
-3. Реализовать `audit(url, html, headers) -> List[Finding]`.
-4. Добавить правило в `Registry/rules.json`.
-5. Добавить документ в `Framework/` или `Policies/` при необходимости.
-6. Добавить тест в `Tests/`.
+Создаётся последним. В `RFC/0002-wordpress-adapter.md` уже зафиксировано, что он:
 
-## Правила добавления нового действия Action Engine
+- не использует WordPress REST API;
+- является одним из адаптеров в `AI/Adapters/`;
+- требует approval в production;
+- работает только через Capability `wordpress`.
 
-1. Добавить тип в `ActionEngine.supported_actions`.
-2. Реализовать инструкцию в `_generate_instructions`.
-3. Добавить rollback-план в `Policies/rollback_policy.md`.
-4. Добавить verification в `VerificationEngine.verify`.
+## Безопасность
+
+- Production Lock активен по умолчанию.
+- Capability `security` отключена до завершения Security Layer.
+- Все автоматические изменения в production требуют owner approval.
+- Dry Run и Backup обязательны перед любым действием.
+
+## Расширение
+
+1. Добавить `AI/Adapters/WordPress/` после одобрения RFC-0002.
+2. Добавить `AI/Adapters/GitHub/`, `AI/Adapters/Cloudflare/` и т.д.
+3. Добавить `AI/Memory/` для долговременной памяти агента.
+4. Добавить `AI/Models/agent_state.py`.

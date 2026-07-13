@@ -1,0 +1,9 @@
+{
+  "name": "staging",
+  "production_lock": false,
+  "allow_autofix": true,
+  "require_dry_run": true,
+  "require_backup": true,
+  "require_approval_for": ["P0", "P1"],
+  "allowed_actions": ["edit_title", "edit_description", "normalize_h1", "add_canonical", "add_alt", "remove_generator_meta"]
+}

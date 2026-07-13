@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 """
-Главный entrypoint LAOS.
+Главный entrypoint LAOS Kernel.
 
 Поток:
 1. AuditRunner собирает Finding со всех аудиторов.
-2. DecisionEngine принимает решение по каждому.
-3. RiskEngine оценивает риск.
-4. ActionEngine выполняет одобренные autofix.
-5. VerificationEngine проверяет результат.
-6. Logger записывает всё.
-7. GitHub Issue создаётся только для нерешённых проблем.
+2. DecisionEngine принимает решение.
+3. AuthorizationEngine проверяет, можно ли действовать.
+4. DryRunEngine имитирует изменение.
+5. ApprovalManager создаёт запрос владельцу, если нужно.
+6. BackupEngine создаёт backup.
+7. ActionEngine возвращает план (в MVP не применяет к сайту).
+8. VerificationEngine проверяет результат.
+9. Logger записывает всё.
+10. GitHub Issue создаётся только для нерешённых проблем.
 """
 
 import json
@@ -25,20 +28,22 @@ from AI.Engines.risk_engine import RiskEngine
 from AI.Engines.action_engine import ActionEngine
 from AI.Engines.verification_engine import VerificationEngine
 from AI.Engines.logger import Logger
+from AI.Authorization.authorization_engine import AuthorizationEngine
+from AI.DryRun.dry_run_engine import DryRunEngine
+from AI.Backup.backup_engine import BackupEngine
+from AI.Approval.approval_manager import ApprovalManager
 
 
-def load_rules():
-    path = os.path.join(os.path.dirname(__file__), "..", "Registry", "rules.json")
+def load_json(path: str) -> dict:
     with open(path, encoding="utf-8") as f:
         return json.load(f)
 
 
 def create_issue(finding, reason: str):
-    # В MVP — печать в консоль. В продакшене — POST в GitHub API.
     print(f"\n[ISSUE] {finding.rule_id}: {finding.title}")
     print(f"  URL: {finding.url}")
     print(f"  Reason: {reason}")
-    return None  # номер issue
+    return None
 
 
 def main():
@@ -50,12 +55,26 @@ def main():
         "https://laser178.ru/bortovoj-zhurnal/",
     ]
 
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    environment = load_json(os.path.join(root, "Environment", "current.json"))
+    env_config = load_json(os.path.join(root, "Environment", f"{environment['active_environment']}.json"))
+    capabilities = {}
+    for cap_file in os.listdir(os.path.join(root, "Capabilities")):
+        if cap_file.endswith(".json") and cap_file != "README.md":
+            cap = load_json(os.path.join(root, "Capabilities", cap_file))
+            capabilities[cap["capability"]] = cap
+
+    approvals = ApprovalManager()
+
     runner = AuditRunner()
-    decision_engine = DecisionEngine(framework_registry=load_rules())
+    decision_engine = DecisionEngine(framework_registry=load_json(os.path.join(root, "Registry", "rules.json")))
     risk_engine = RiskEngine()
     action_engine = ActionEngine()
     verification_engine = VerificationEngine()
     logger = Logger()
+    authorization_engine = AuthorizationEngine(env_config, capabilities)
+    dry_run_engine = DryRunEngine()
+    backup_engine = BackupEngine()
 
     stats = {
         "audited": 0,
@@ -67,6 +86,7 @@ def main():
         "owner_prompts": 0,
         "rejected": 0,
         "framework_improvements": 0,
+        "not_authorized": 0,
     }
 
     for url in pages:
@@ -80,30 +100,48 @@ def main():
             decision = decision_engine.decide(finding)
             logger.log_decision(finding.rule_id, decision)
             risk = risk_engine.assess(finding, decision)
-
             print(f"  {finding.severity} {finding.rule_id}: {decision.action} (risk={risk['final_risk']}, conf={finding.confidence})")
 
             if decision.action == "autofix":
+                dry_run = dry_run_engine.run(finding)
+                logger.log_event("dry_run", {"finding_id": finding.rule_id, "dry_run": dry_run})
+                context = {"dry_run_uuid": dry_run["dry_run_uuid"]}
+
+                authz = authorization_engine.authorize(finding, decision, context)
+                logger.log_event("authorization", {"finding_id": finding.rule_id, "result": authz})
+
+                if not authz["allowed"]:
+                    print(f"    🚫 not authorized: {authz['reason']}")
+                    stats["not_authorized"] += 1
+                    if "approval" in authz["reason"].lower() or "P0" in finding.severity or "P1" in finding.severity:
+                        req = approvals.create(finding, decision, dry_run)
+                        print(f"    ❓ approval request: {req.uuid}")
+                        stats["owner_prompts"] += 1
+                    continue
+
+                backup = backup_engine.backup(finding.url, target_type="content")
+                backup_verified = backup_engine.verify(backup["backup_uuid"])
+                if backup_verified["status"] != "success":
+                    print(f"    🚫 backup failed: {backup_verified['reason']}")
+                    create_issue(finding, backup_verified["reason"])
+                    stats["issues"] += 1
+                    continue
+                context["backup_uuid"] = backup["backup_uuid"]
+
                 action_result = action_engine.execute(finding, decision)
                 logger.log_action(finding.rule_id, action_result)
 
-                if action_result["status"] == "planned":
-                    # В MVP не применяем изменения к сайту, только проверяем текущее состояние
-                    verify_result = verification_engine.verify(finding, action_result)
-                    logger.log_verification(finding.rule_id, verify_result)
+                verify_result = verification_engine.verify(finding, action_result)
+                logger.log_verification(finding.rule_id, verify_result)
 
-                    if verify_result["status"] == "success":
-                        stats["verified"] += 1
-                        print(f"    ✅ verified: {verify_result['reason']}")
-                    else:
-                        stats["failed"] += 1
-                        print(f"    ❌ verification failed: {verify_result['reason']}")
-                        create_issue(finding, verify_result["reason"])
-                        logger.log_issue(finding.rule_id, 0, verify_result["reason"])
-                        stats["issues"] += 1
+                if verify_result["status"] == "success":
+                    stats["verified"] += 1
+                    print(f"    ✅ verified: {verify_result['reason']}")
                 else:
-                    create_issue(finding, action_result["reason"])
-                    logger.log_issue(finding.rule_id, 0, action_result["reason"])
+                    stats["failed"] += 1
+                    print(f"    ❌ verification failed: {verify_result['reason']}")
+                    create_issue(finding, verify_result["reason"])
+                    logger.log_issue(finding.rule_id, 0, verify_result["reason"])
                     stats["issues"] += 1
 
                 stats["autofix"] += 1
@@ -126,13 +164,21 @@ def main():
                 logger.log_issue(finding.rule_id, 0, f"Missing framework reference: {finding.framework_reference}")
                 stats["framework_improvements"] += 1
 
+    # Print waiting approvals
+    waiting = approvals.list_waiting()
+    if waiting:
+        print("\n=== Waiting Approvals ===")
+        for req in waiting:
+            print(f"  {req.uuid}: {req.title} ({req.target_url})")
+
     # Summary
-    print("\n=== LAOS Run Summary ===")
+    print("\n=== LAOS Kernel Run Summary ===")
     print(f"Pages audited: {stats['audited']}")
     print(f"Findings: {stats['findings']}")
     print(f"Autofix planned: {stats['autofix']}")
     print(f"Verified: {stats['verified']}")
     print(f"Failed verification: {stats['failed']}")
+    print(f"Not authorized: {stats['not_authorized']}")
     print(f"Issues created: {stats['issues']}")
     print(f"Owner prompts: {stats['owner_prompts']}")
     print(f"Rejected: {stats['rejected']}")
@@ -144,7 +190,8 @@ def main():
         json.dump({
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "stats": stats,
-            "session_id": logger.session_id
+            "session_id": logger.session_id,
+            "environment": env_config["name"],
         }, f, ensure_ascii=False, indent=2)
 
 

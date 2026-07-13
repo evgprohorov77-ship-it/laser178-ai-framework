@@ -1,0 +1,9 @@
+{
+  "capability": "seo",
+  "enabled": true,
+  "description": "SEO-оптимизация: title, description, H1, canonical, Open Graph.",
+  "allowed_actions": ["edit_title", "edit_description", "normalize_h1", "add_canonical"],
+  "environments": ["development", "staging"],
+  "requires_approval_above_severity": "P1",
+  "owner_override": false
+}

@@ -1,0 +1,9 @@
+{
+  "name": "production",
+  "production_lock": true,
+  "allow_autofix": false,
+  "require_dry_run": true,
+  "require_backup": true,
+  "require_approval_for": ["P0", "P1", "P2", "P3", "autofix"],
+  "allowed_actions": []
+}

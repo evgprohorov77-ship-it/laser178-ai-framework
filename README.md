@@ -2,12 +2,25 @@
 
 AI-агент для управления сайтом `laser178.ru`. Работает как команда специалистов: технический директор, SEO-специалист, редактор, контент-менеджер, WordPress-разработчик, QA-инженер, веб-мастер, аналитик.
 
-## Архитектура
+## Архитектура: LAOS Kernel
 
-LAOS построена вокруг Decision Engine:
+LAOS теперь строится как операционная система:
+
+| Компонент | Роль |
+|-----------|------|
+| Decision Engine | Процессор |
+| Policy | Оперативная память / правила |
+| Knowledge | Файловая система |
+| Authorization | Служба безопасности |
+| Action Engine | Драйверы |
+| Adapters | Внешние устройства (WordPress — один из них) |
+| Auditors | Сенсоры |
+| Logs | Журнал событий |
+
+Главный поток:
 
 ```
-Audit → Decision Engine → Risk Engine → Action Engine → Verification → Logging → GitHub (только если не исправлено)
+Audit → Decision → Authorization → Dry Run → Approval → Backup → Action → Verification → Logging → Issue (fallback)
 ```
 
 Подробнее в [`ARCHITECTURE.md`](ARCHITECTURE.md) и [`AI/Decision/AI_DECISION_ENGINE.md`](AI/Decision/AI_DECISION_ENGINE.md).
@@ -22,33 +35,40 @@ python3 Scripts/run_laos.py
 
 | Директория | Назначение |
 |------------|------------|
-| `AI/` | Исполнительная система: Decision Engine, движки, модели. |
-| `Auditors/` | Модули аудита: SEO, структура, изображения, производительность, безопасность, WordPress. |
+| `AI/Authorization/` | Authorization Engine — можно ли действовать? |
+| `AI/Approval/` | Owner Approval System с UUID и статусами. |
+| `AI/Backup/` | Backup Engine — алгоритм резервного копирования. |
+| `AI/Decision/` | Decision Engine — центр принятия решений. |
+| `AI/DryRun/` | Dry Run Engine — имитация перед изменением. |
+| `AI/Engines/` | Risk, Action, Verification, Logger. |
+| `AI/Models/` | `Finding`, `Decision`, `ExecutionContext`. |
+| `Auditors/` | SEO, структура, изображения, производительность, безопасность, WordPress. |
+| `Capabilities/` | Capability System — разрешённые возможности агента. |
+| `Environment/` | development / staging / production + current. |
 | `Framework/` | Правила, роли, чек-листы. |
-| `Policies/` | Severity, rollback, framework reference. |
+| `Knowledge/Company/` | База знаний, разбитая по доменам. |
+| `Policies/` | Policy Layer: authorization, autofix, backup, verification, logging, production, dry run, human approval. |
 | `Registry/` | Реестр правил. |
+| `RFC/` | Request for Comments — любое архитектурное изменение. |
 | `Scripts/` | Entrypoints. |
 | `Logs/` | Логи выполнения. |
-| `Knowledge/` | База знаний о компании. |
 
 ## Ключевые принципы
 
-1. **Безопасность превыше всего.** P0 и P1 не исправляются автоматически.
-2. **Confidence < 0.70** → autofix запрещён.
-3. **Framework reference** обязателен. Если правила нет — создаётся Issue «Framework Improvement».
-4. **Любое изменение обосновано.** Ответ на «Что конкретно станет лучше?» обязателен.
-5. **Verification после каждого действия.** Если не прошёл — rollback.
-6. **GitHub Issue** — только как fallback, когда автоматика не справилась.
-
-## Зоны ответственности
-
-- **Зелёная** — агент действует автоматически (P2/P3 с высоким confidence).
-- **Жёлтая** — агент предлагает варианты (P1, P2 с низким confidence).
-- **Красная** — только после подтверждения владельца (P0, P1).
+1. **WordPress REST API не используется.** См. `RFC/0002-wordpress-adapter.md`.
+2. **Реальные изменения на сайт не выполняются.** В MVP все действия — план/имитация.
+3. **Production Lock активен.** Автоматические изменения в production запрещены.
+4. **Capability controls.** Агент может делать только то, что разрешено.
+5. **Authorization first.** Любое действие проходит Authorization Engine.
+6. **Dry Run mandatory.** Перед изменением показываем владельцу, что произойдёт.
+7. **Backup mandatory.** Backup Engine перед любым действием.
+8. **Owner Approval.** P0/P1 и production требуют explicit approval.
+9. **Verification + rollback.** После действия проверяем, при сбое откатываем.
+10. **RFC process.** Любой новый Engine или архитектурное изменение — через RFC.
 
 ## Статус
 
-Версия 1.0.0 — MVP с аудиторами, Decision Engine и логированием. Автоматическое применение изменений к сайту в этом релизе не производится: Action Engine возвращает план действий, Verification Engine проверяет текущее состояние.
+LAOS Kernel v2.0. Все Policy Layer и Engine созданы, но WordPress Adapter и реальные изменения заблокированы до завершения Security Layer.
 
 ## Лицензия
 

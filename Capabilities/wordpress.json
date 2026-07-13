@@ -1,0 +1,10 @@
+{
+  "capability": "wordpress",
+  "enabled": true,
+  "description": "Взаимодействие с WordPress через адаптер (не REST API).",
+  "allowed_actions": ["read_content", "update_meta"],
+  "environments": ["development", "staging"],
+  "requires_approval_above_severity": "P2",
+  "owner_override": false,
+  "note": "REST API запрещён. Действия выполняются через адаптер."
+}

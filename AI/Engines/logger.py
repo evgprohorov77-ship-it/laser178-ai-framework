@@ -26,6 +26,9 @@ class Logger:
             "findings": [f.to_dict() for f in findings]
         })
 
+    def log_event(self, event_type: str, data: Dict[str, Any]):
+        self._write(event_type, data)
+
     def log_decision(self, finding_id: str, decision: Any):
         from AI.Models.finding import Decision, Finding
         data = decision.__dict__

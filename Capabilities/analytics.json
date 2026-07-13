@@ -1,0 +1,10 @@
+{
+  "capability": "analytics",
+  "enabled": false,
+  "description": "Аналитика: чтение метрик из Яндекс Метрики, GSC, Google Analytics.",
+  "allowed_actions": ["read_metrics"],
+  "environments": [],
+  "requires_approval_above_severity": "P1",
+  "owner_override": false,
+  "note": "Требуются доступы к аналитике."
+}

@@ -1,0 +1,10 @@
+{
+  "capability": "security",
+  "enabled": false,
+  "description": "Безопасность: патчи, отключение XML-RPC, смена прав доступа, firewall.",
+  "allowed_actions": [],
+  "environments": [],
+  "requires_approval_above_severity": "P0",
+  "owner_override": false,
+  "note": "Отключено до завершения Security Layer."
+}
