@@ -285,7 +285,15 @@ class Advisor:
 
         requested_at = time.time()
         try:
-            response = self._openai.responses.create(
+            client = self._openai
+        except RuntimeError as exc:
+            logger.warning("Advisor cannot initialize OpenAI client: %s", exc)
+            return self._fallback(
+                task_id, review_type, "advisor_unavailable: OPENAI_API_KEY not set", risk_enum
+            )
+
+        try:
+            response = client.responses.create(
                 model=self.config.model,
                 instructions=instructions,
                 input=user_input,

@@ -17,3 +17,9 @@ __pycache__/
 # Local logs and audits
 Logs/
 Audit/
+
+# Advisor dry-run artifacts (not committed)
+Advisor/config.yaml
+Advisor/context_before_sanitization.txt
+Advisor/context_after_sanitization.txt
+Advisor/logs/
